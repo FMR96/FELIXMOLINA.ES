@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { ChevronRight, Monitor, Rocket, Layers, Lightbulb, Code2, Bell, Mail } from "lucide-react"
+import { ChevronRight, Monitor, Rocket, Layers, Lightbulb, Code2, Bell, Mail, MessageCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import CommandCenterPage from "./command-center/page"
 import AgentNetworkPage from "./agent-network/page"
@@ -106,6 +106,16 @@ export default function FelixMolinaWeb() {
             <Button variant="ghost" size="icon" className="text-neutral-400 hover:text-orange-500">
               <Mail className="w-4 h-4" />
             </Button>
+            <a href="https://wa.me/34664861029" target="_blank" rel="noopener noreferrer">
+              <Button variant="ghost" size="icon" className="text-neutral-400 hover:text-orange-500">
+                <MessageCircle className="w-4 h-4" />
+              </Button>
+            </a>
+            <a href="https://x.com/xfmr96" target="_blank" rel="noopener noreferrer">
+              <Button variant="ghost" size="icon" className="text-neutral-400 hover:text-orange-500">
+                <span className="text-xs font-bold leading-none">𝕏</span>
+              </Button>
+            </a>
           </div>
         </div>
 

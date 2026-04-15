@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Mail, Linkedin, Instagram } from "lucide-react"
+import { Mail, MessageCircle } from "lucide-react"
 
 export default function SobreMiPage() {
   return (
@@ -60,12 +60,16 @@ export default function SobreMiPage() {
                 <Mail className="w-3 h-3 mr-1" />
                 Contacto
               </Button>
-              <Button size="sm" variant="outline" className="border-neutral-700 text-neutral-400 hover:text-white hover:bg-neutral-800 bg-transparent">
-                <Linkedin className="w-3 h-3" />
-              </Button>
-              <Button size="sm" variant="outline" className="border-neutral-700 text-neutral-400 hover:text-white hover:bg-neutral-800 bg-transparent">
-                <Instagram className="w-3 h-3" />
-              </Button>
+              <a href="https://wa.me/34664861029" target="_blank" rel="noopener noreferrer">
+                <Button size="sm" variant="outline" className="border-neutral-700 text-neutral-400 hover:text-white hover:bg-neutral-800 bg-transparent">
+                  <MessageCircle className="w-3 h-3" />
+                </Button>
+              </a>
+              <a href="https://x.com/xfmr96" target="_blank" rel="noopener noreferrer">
+                <Button size="sm" variant="outline" className="border-neutral-700 text-neutral-400 hover:text-white hover:bg-neutral-800 bg-transparent">
+                  <span className="text-xs font-bold leading-none">𝕏</span>
+                </Button>
+              </a>
             </div>
           </CardContent>
         </Card>
