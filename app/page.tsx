@@ -1,13 +1,14 @@
 "use client"
 
 import { useState } from "react"
-import { ChevronRight, Monitor, Rocket, Layers, Lightbulb, Code2, Bell, Mail, MessageCircle } from "lucide-react"
+import { ChevronRight, Monitor, Rocket, Layers, Lightbulb, Code2, Bell, Mail, MessageCircle, Rss } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import CommandCenterPage from "./command-center/page"
 import AgentNetworkPage from "./agent-network/page"
 import OperationsPage from "./operations/page"
 import IntelligencePage from "./intelligence/page"
 import SystemsPage from "./systems/page"
+import BlogPage from "./blog/page"
 
 const sectionLabels: Record<string, string> = {
   overview: "SOBRE MÍ",
@@ -15,6 +16,7 @@ const sectionLabels: Record<string, string> = {
   operations: "PROYECTOS",
   intelligence: "INSIGHTS",
   systems: "STACK",
+  blog: "BLOG TECH",
 }
 
 export default function FelixMolinaWeb() {
@@ -52,6 +54,7 @@ export default function FelixMolinaWeb() {
               { id: "operations", icon: Layers, label: "PROYECTOS" },
               { id: "intelligence", icon: Lightbulb, label: "INSIGHTS" },
               { id: "systems", icon: Code2, label: "STACK" },
+              { id: "blog", icon: Rss, label: "BLOG TECH" },
             ].map((item) => (
               <button
                 key={item.id}
@@ -126,8 +129,20 @@ export default function FelixMolinaWeb() {
           {activeSection === "operations" && <OperationsPage />}
           {activeSection === "intelligence" && <IntelligencePage />}
           {activeSection === "systems" && <SystemsPage />}
+          {activeSection === "blog" && <BlogPage />}
         </div>
       </div>
+
+      {/* Floating WhatsApp Button */}
+      <a
+        href="https://wa.me/34664861029"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-neutral-800 border border-neutral-600 text-neutral-300 hover:text-white hover:border-neutral-400 hover:bg-neutral-700 transition-all duration-200 rounded-full px-4 py-3 shadow-lg"
+      >
+        <MessageCircle className="w-5 h-5" />
+        <span className="text-sm font-medium hidden sm:block">WhatsApp</span>
+      </a>
     </div>
   )
 }
