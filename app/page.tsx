@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { ChevronRight, Monitor, Rocket, Layers, Lightbulb, Code2, Bell, Mail, MessageCircle, Rss } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -23,6 +23,10 @@ const sectionLabels: Record<string, string> = {
 export default function FelixMolinaWeb() {
   const [activeSection, setActiveSection] = useState("overview")
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
+
+  useEffect(() => {
+    if (window.innerWidth < 768) setSidebarCollapsed(true)
+  }, [])
 
   return (
     <div className="flex h-screen">
@@ -59,7 +63,10 @@ export default function FelixMolinaWeb() {
             ].map((item) => (
               <button
                 key={item.id}
-                onClick={() => setActiveSection(item.id)}
+                onClick={() => {
+                  setActiveSection(item.id)
+                  if (window.innerWidth < 768) setSidebarCollapsed(true)
+                }}
                 className={`w-full flex items-center gap-3 p-3 rounded transition-colors ${
                   activeSection === item.id
                     ? "bg-orange-500 text-white"
