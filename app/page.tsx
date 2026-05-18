@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { ChevronRight, Monitor, Rocket, Layers, Lightbulb, Code2, Bell, Mail, MessageCircle, Rss } from "lucide-react"
+import { ChevronRight, Menu, Monitor, Rocket, Layers, Lightbulb, Code2, Bell, Mail, MessageCircle, Rss } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import CommandCenterPage from "./command-center/page"
 import AgentNetworkPage from "./agent-network/page"
@@ -32,7 +32,11 @@ export default function FelixMolinaWeb() {
     <div className="flex h-screen">
       {/* Sidebar */}
       <div
-        className={`${sidebarCollapsed ? "w-16" : "w-70"} bg-neutral-900 border-r border-neutral-700 transition-all duration-300 fixed md:relative z-50 md:z-auto h-full md:h-auto ${!sidebarCollapsed ? "md:block" : ""}`}
+        className={`bg-neutral-900 border-r border-neutral-700 transition-all duration-300 fixed md:relative z-50 md:z-auto h-full
+          ${sidebarCollapsed
+            ? "-translate-x-full md:translate-x-0 w-64 md:w-16"
+            : "translate-x-0 w-64 md:w-70"
+          }`}
       >
         <div className="p-4">
           <div className="flex items-center justify-between mb-8">
@@ -104,7 +108,17 @@ export default function FelixMolinaWeb() {
       <div className={`flex-1 flex flex-col ${!sidebarCollapsed ? "md:ml-0" : ""}`}>
         {/* Top Toolbar */}
         <div className="h-16 bg-neutral-800 border-b border-neutral-700 flex items-center justify-between px-6">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
+            {sidebarCollapsed && (
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setSidebarCollapsed(false)}
+                className="md:hidden text-neutral-400 hover:text-orange-500"
+              >
+                <Menu className="w-5 h-5" />
+              </Button>
+            )}
             <div className="text-sm text-neutral-400">
               FÉLIX MOLINA / <span className="text-orange-500">{sectionLabels[activeSection]}</span>
             </div>
