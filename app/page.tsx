@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Link from "next/link"
 import { ChevronRight, Monitor, Rocket, Layers, Lightbulb, Code2, Bell, Mail, MessageCircle, Rss } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import CommandCenterPage from "./command-center/page"
@@ -131,6 +132,28 @@ export default function FelixMolinaWeb() {
           {activeSection === "systems" && <SystemsPage />}
           {activeSection === "blog" && <BlogPage />}
         </div>
+
+        {/* Legal Footer */}
+        <footer className="flex-shrink-0 h-8 bg-neutral-900 border-t border-neutral-800 flex items-center justify-center gap-3 px-4">
+          <Link href="/aviso-legal" className="text-xs text-neutral-600 hover:text-orange-500 transition-colors">
+            Aviso Legal
+          </Link>
+          <span className="text-neutral-800">|</span>
+          <Link href="/politica-privacidad" className="text-xs text-neutral-600 hover:text-orange-500 transition-colors">
+            Privacidad
+          </Link>
+          <span className="text-neutral-800">|</span>
+          <Link href="/politica-cookies" className="text-xs text-neutral-600 hover:text-orange-500 transition-colors">
+            Cookies
+          </Link>
+          <span className="text-neutral-800">|</span>
+          <button
+            onClick={() => window.dispatchEvent(new CustomEvent("manage-cookies"))}
+            className="text-xs text-neutral-600 hover:text-orange-500 transition-colors"
+          >
+            Gestionar cookies
+          </button>
+        </footer>
       </div>
 
       {/* Floating WhatsApp Button */}

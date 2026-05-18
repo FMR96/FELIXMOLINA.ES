@@ -2,13 +2,14 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Geist_Mono as GeistMono } from "next/font/google"
 import "./globals.css"
+import { CookieBanner } from "@/components/cookie-banner"
+import { AnalyticsProvider } from "@/components/analytics-provider"
 
 const geistMono = GeistMono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Tactical Operations Dashboard",
-  description: "Tactical command and control system",
-    generator: 'v0.app'
+  title: "Félix Molina — Emprendedor & Builder",
+  description: "Web personal de Félix Molina. Emprendedor, builder y apasionado de los sistemas que escalan negocios.",
 }
 
 export default function RootLayout({
@@ -18,7 +19,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body className={`${geistMono.className} bg-black text-white antialiased`}>{children}</body>
+      <body className={`${geistMono.className} bg-black text-white antialiased`}>
+        {children}
+        <CookieBanner />
+        <AnalyticsProvider />
+      </body>
     </html>
   )
 }
