@@ -1,0 +1,343 @@
+---
+title: "SEO Técnico 2026: Core Web Vitals y Arquitectura Semántica"
+h1: "SEO Técnico en 2026: La Guía de Arquitectura que Posiciona Sitios Premium"
+slug: "seo-tecnico-core-web-vitals"
+metaTitle: "SEO Técnico 2026 | Core Web Vitals, Schema y Arquitectura Semántica"
+metaDescription: "Guía avanzada de SEO técnico para 2026. Core Web Vitals, structured data, arquitectura de información, rastreo e indexación. Metodología para sitios premium."
+keyword: "seo tecnico"
+keywordsSecondary:
+  - "core web vitals 2026"
+  - "seo tecnico avanzado"
+  - "arquitectura seo"
+  - "structured data seo"
+  - "velocidad web seo"
+  - "indexacion google"
+searchIntent: "informacional"
+funnel: "MOFU"
+cluster: "SEO Técnico Moderno"
+publishOrder: 11
+date: "2026-07-15"
+readTime: "17 min"
+schema: ["Article", "FAQPage"]
+---
+
+## El SEO Técnico Como Fundamento: Por Qué el Contenido Solo No Basta
+
+El contenido de más calidad del mercado, publicado en una web con problemas técnicos graves, no posiciona. El SEO técnico es la infraestructura sobre la que se construye todo lo demás: el contenido, los backlinks, la semántica.
+
+En 2026, el SEO técnico ha evolucionado más allá de los meta tags y los sitemaps. Incluye optimización para Googlebot, optimización para AI crawlers (GPTBot, ClaudeBot, CCBot), Core Web Vitals, structured data complejo y arquitectura de información diseñada para maximizar la transferencia de autoridad.
+
+**Los tres errores técnicos que destruyen más proyectos SEO:**
+
+1. **Problemas de indexación silenciosos**: páginas que crees que están indexadas pero Google no rastrea
+2. **Core Web Vitals fallidos en móvil**: el 65% del tráfico de búsqueda en España es móvil; una web lenta en móvil pierde más de la mitad del mercado
+3. **Schema markup incorrecto**: peor que no tener schema es tener schema mal implementado (genera errores en Search Console y penalización de rich results)
+
+---
+
+## Core Web Vitals 2026: El Estado Actual y los Nuevos Factores
+
+Google usa Core Web Vitals como señal de ranking desde 2021. En 2026, los CWV han evolucionado y se han añadido nuevas métricas.
+
+### Las Métricas Core Web Vitals Actuales
+
+**LCP — Largest Contentful Paint**
+Mide: ¿cuánto tarda en cargar el elemento visual más grande (hero image, H1 large, etc.)?
+- Verde (bueno): < 2.5 segundos
+- Naranja (mejora): 2.5 - 4.0 segundos
+- Rojo (malo): > 4.0 segundos
+
+**Causas principales de LCP alto:**
+- Imágenes sin comprimir o sin formato moderno (WebP/AVIF)
+- Render-blocking resources (JavaScript y CSS que bloquean el renderizado)
+- Server response time lento (TTFB alto)
+- Falta de preload para el elemento LCP
+
+**INP — Interaction to Next Paint** (sustituyó a FID en 2024)
+Mide: ¿cuánto tarda la página en responder a una interacción del usuario (clic, tap)?
+- Verde: < 200ms
+- Naranja: 200 - 500ms
+- Rojo: > 500ms
+
+**Causas principales de INP alto:**
+- JavaScript pesado que bloquea el hilo principal
+- Third-party scripts (chatbots, analytics, ads) ejecutándose en el hilo principal
+- Falta de code splitting
+
+**CLS — Cumulative Layout Shift**
+Mide: ¿cuánto se "mueve" el contenido de la página mientras carga?
+- Verde: < 0.1
+- Naranja: 0.1 - 0.25
+- Rojo: > 0.25
+
+**Causas principales de CLS alto:**
+- Imágenes sin dimensiones explícitas (width/height)
+- Anuncios o embeds sin espacio reservado
+- Fuentes web con fallback diferente
+
+### Nuevas Señales de Experiencia de Página 2026
+
+**TTFB (Time to First Byte):** no es un CWV oficial pero afecta al LCP indirectamente. Target: < 800ms. Para sitios en España, usar CDNs con PoPs en Europa Occidental.
+
+**FCP (First Contentful Paint):** indica cuándo el usuario ve el primer elemento visual. Target: < 1.8s.
+
+**TBT (Total Blocking Time):** tiempo total en que el hilo principal está bloqueado. Target: < 200ms.
+
+---
+
+## Arquitectura de Información para SEO: El Diseño Que Transfiere Autoridad
+
+La arquitectura de información de un sitio no es solo UX. Es el sistema que determina cómo fluye la autoridad entre páginas y cómo Google entiende la jerarquía temática del sitio.
+
+### El Modelo Hub & Spoke
+
+```
+Pillar Page (Hub)
+"SEO en España 2026: La Guía Definitiva"
+         │
+    ┌────┼────┐
+    │    │    │
+  Spoke  Spoke  Spoke
+"SEO   "GEO  "SEO para
+ Local"   "  restaurantes"
+```
+
+**Reglas del modelo hub & spoke:**
+- El pillar debe enlazar a todos los spokes
+- Cada spoke debe enlazar de vuelta al pillar
+- Los spokes pueden enlazarse entre sí si hay relevancia semántica
+- Un pillar por cluster temático
+
+### Arquitectura de URL Semántica
+
+Las URLs deben ser semánticamente descriptivas y jerárquicamente correctas.
+
+**Jerarquía de URL recomendada:**
+```
+felixmolina.es/blog/[slug-del-articulo]
+felixmolina.es/servicios/[nombre-del-servicio]
+felixmolina.es/casos/[sector-del-caso]
+```
+
+**Reglas de URL SEO:**
+- Máximo 60-75 caracteres
+- Sin stop words innecesarias
+- Separadores: guiones medios (-) nunca guiones bajos (_)
+- Sin parámetros en URLs indexables
+- Sin mayúsculas
+- Sin caracteres especiales ni acentos en URLs
+
+### Silo Structure y Link Equity Flow
+
+El link equity (autoridad transmitida por backlinks) se distribuye por el sitio a través de enlaces internos. La estructura silo garantiza que las páginas más importantes reciben más autoridad.
+
+**Implementación de silo structure:**
+1. Identifica las 5-10 páginas más importantes del sitio (las que más quieres posicionar)
+2. Asegúrate de que la home enlaza a estas páginas
+3. Asegúrate de que cada artículo del blog enlaza a al menos 2 páginas objetivo
+4. Evita páginas huérfanas (sin enlaces internos hacia ellas)
+
+---
+
+## Structured Data / Schema Markup: La Guía Completa
+
+El schema markup es código JSON-LD que le dice explícitamente a Google qué es cada elemento de tu página. En 2026, el schema correcto es la diferencia entre aparecer con resultados ricos y aparecer como un resultado genérico.
+
+### Tipos de Schema Prioritarios por Tipo de Sitio
+
+**Para consultores y profesionales:**
+```json
+{
+  "@type": "Person",
+  "@type": "ProfessionalService",
+  "@type": "Service",
+  "@type": "FAQPage"
+}
+```
+
+**Para restaurantes:**
+```json
+{
+  "@type": "Restaurant",
+  "@type": "Menu",
+  "@type": "FoodEstablishment"
+}
+```
+
+**Para blog:**
+```json
+{
+  "@type": "Article",
+  "@type": "BlogPosting",
+  "@type": "FAQPage",
+  "@type": "BreadcrumbList"
+}
+```
+
+### Errores Críticos de Schema Markup
+
+**Error 1: Schema sin datos reales.** Usar campos de schema con valores genéricos o vacíos ("description": "descripción del servicio") genera errores de structured data en Search Console.
+
+**Error 2: Múltiples tipos de página en el mismo schema.** Una página de blog es Article, no Article + ProfessionalService + LocalBusiness al mismo tiempo. Cada página debe tener el schema apropiado para su tipo.
+
+**Error 3: Schema no visible en el contenido de la página.** Google requiere que los datos en el schema sean verificables en el contenido de la página. No puedes poner una valoración de 4.8 estrellas en el schema si no hay reseñas visibles en la página.
+
+**Error 4: FAQPage con preguntas de baja calidad.** Las preguntas deben ser las que los usuarios realmente hacen. "¿Qué es nuestra empresa?" no es una FAQ útil.
+
+---
+
+## Rastreo e Indexación: Controlar Lo Que Google Ve
+
+### Google Search Console: Las 5 Métricas Críticas
+
+**1. Cobertura del índice:** páginas indexadas vs. páginas con errores. Un sitio sano debe tener >90% de páginas indexadas sin errores.
+
+**2. Core Web Vitals report:** métricas LCP, INP y CLS por URL. Identifica las páginas que necesitan optimización con mayor urgencia.
+
+**3. Rich results:** si tienes schema implementado, este reporte muestra si está funcionando correctamente o si hay errores.
+
+**4. Sitemaps:** verifica que Google está procesando tu sitemap correctamente y que no hay URLs bloqueadas por robots.txt que deberían estar indexadas.
+
+**5. Enlace de páginas principales:** verifica que las páginas más importantes reciben enlaces internos suficientes.
+
+### Robots.txt: Qué Bloquear y Qué No
+
+El robots.txt controla qué puede rastrear Googlebot (y otros crawlers). Los errores comunes:
+
+**Bloquear accidentalmente páginas importantes:**
+```
+# MAL — bloquea toda la sección /servicios
+User-agent: *
+Disallow: /servicios/
+
+# BIEN — solo bloquea lo necesario
+User-agent: *
+Disallow: /admin/
+Disallow: /api/
+Disallow: /checkout/
+```
+
+**No bloquear crawlers de IA (si quieres visibilidad GEO):**
+En 2026, bloquear GPTBot, ClaudeBot o CCBot significa que OpenAI, Anthropic y Common Crawl no pueden indexar tu contenido para entrenar/actualizar sus modelos. Si quieres visibilidad GEO, deja estos crawlers activos:
+```
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+```
+
+### JavaScript SEO
+
+Los sitios construidos con React, Next.js, Vue o Angular renderizan JavaScript en el cliente. Googlebot puede procesar JavaScript, pero con un retraso de horas a días. Para páginas críticas:
+
+**Soluciones de renderizado para SEO:**
+1. **SSR (Server-Side Rendering)**: el servidor genera el HTML completo antes de enviarlo. Mejor opción para SEO. Next.js lo facilita.
+2. **SSG (Static Site Generation)**: genera HTML en tiempo de build. Óptimo para contenido que no cambia frecuentemente.
+3. **ISR (Incremental Static Regeneration)**: SSG con revalidación periódica. El mejor balance para blogs y páginas de servicios.
+4. **CSR (Client-Side Rendering)**: todo renderizado en el cliente. Evitar para páginas que quieres posicionar.
+
+**Para Next.js (este proyecto):** SSG o ISR para artículos del blog y páginas de servicios. SSR solo para páginas con datos dinámicos per-user.
+
+---
+
+## Crawl Budget: La Eficiencia que Diferencia Sitios Grandes
+
+El crawl budget es el número de páginas que Googlebot rastrea de un sitio en un período de tiempo. Para sitios pequeños (<1.000 páginas), no es una preocupación crítica. Para sitios medianos-grandes (>10.000 páginas), optimizarlo puede marcar la diferencia.
+
+**Malgastadores de crawl budget (a eliminar):**
+- URLs con parámetros de filtro duplicadas (add canonical o noindex)
+- Páginas de paginación infinita
+- URLs de sesión o tracking
+- Páginas de búsqueda interna (/buscar?q=xxx)
+- Páginas de confirmación de formularios
+
+---
+
+## FAQ — SEO Técnico
+
+### ¿Qué son los Core Web Vitals y por qué importan para el SEO?
+
+Los Core Web Vitals son un conjunto de métricas de experiencia de usuario definidas por Google que miden la velocidad de carga (LCP), la interactividad (INP) y la estabilidad visual (CLS) de una página web. Google los utiliza como señal de ranking desde 2021 — páginas con buenos Core Web Vitals tienen ventaja sobre páginas con malos CWV cuando el resto de factores son iguales. En práctica, los CWV son un desempate: no compensan contenido de baja calidad ni falta de backlinks, pero pueden marcar la diferencia entre dos páginas de similar calidad.
+
+### ¿Qué es el schema markup y para qué sirve en SEO?
+
+El schema markup (o structured data) es un código en formato JSON-LD que añades a las páginas de tu web para describir explícitamente a Google el tipo de contenido y sus propiedades. Por ejemplo: que una página es el perfil de un "Restaurante" con dirección, horario y rating; o que un artículo es un "FAQPage" con preguntas y respuestas específicas. Google usa esta información para mostrar resultados enriquecidos (rich results) en la SERP: estrellas de rating, preguntas desplegables, breadcrumbs, etc. Los rich results aumentan el CTR significativamente.
+
+### ¿Cómo mejoro la velocidad de mi web para SEO?
+
+Para mejorar la velocidad de una web y optimizar los Core Web Vitals: (1) comprimir y convertir imágenes a formato WebP o AVIF, (2) implementar carga diferida (lazy loading) para imágenes fuera del viewport inicial, (3) usar una CDN para servir recursos estáticos desde servidores cercanos al usuario, (4) reducir o diferir JavaScript no crítico, (5) implementar caché del navegador, (6) usar SSR o SSG para eliminar los problemas de render en JavaScript. Las herramientas para medir: Google PageSpeed Insights, Lighthouse, GTmetrix y Core Web Vitals report en Google Search Console.
+
+### ¿Qué es el archivo robots.txt y cómo configurarlo correctamente?
+
+El robots.txt es un archivo de texto en la raíz de tu sitio web que indica a los rastreadores de buscadores qué páginas pueden y no pueden rastrear. Se usa para evitar que Google indexe páginas sin valor SEO (admin, checkout, búsqueda interna) y para conservar el crawl budget en sitios grandes. Configurarlo incorrectamente puede bloquear accidentalmente páginas importantes. La regla práctica: solo bloquear lo que definitivamente no quieres que Google vea. Para un sitio normal, el robots.txt debe ser mínimo.
+
+### ¿Qué es SSR, SSG e ISR en el contexto de Next.js y SEO?
+
+SSR (Server-Side Rendering) genera el HTML de la página en el servidor en cada solicitud, lo que garantiza que Googlebot recibe el contenido completo inmediatamente. SSG (Static Site Generation) genera el HTML durante el proceso de build, produciendo páginas estáticas ultra-rápidas. ISR (Incremental Static Regeneration) combina ambos: genera páginas estáticas pero las regenera periódicamente con datos actualizados. Para SEO con Next.js: usar SSG para páginas de contenido estático (artículos del blog), ISR para páginas que cambian ocasionalmente (servicios), y SSR solo para páginas con datos personalizados por usuario.
+
+---
+
+## Entidades Semánticas
+
+**Conceptos técnicos:** Core Web Vitals, LCP, INP, CLS, FCP, TTFB, TBT, schema markup, JSON-LD, structured data, robots.txt, sitemap XML, canonical, hreflang, crawl budget, render budget, SSR, SSG, ISR, CSR
+
+**Herramientas:** Google Search Console, PageSpeed Insights, Lighthouse, GTmetrix, Screaming Frog, Ahrefs, Semrush, Botify
+
+**Tecnologías:** Next.js, React, Vercel, CDN, WebP, AVIF, lazy loading, code splitting, webpack
+
+**Crawlers:** Googlebot, GPTBot, ClaudeBot, CCBot, Bingbot
+
+---
+
+## CTA Premium
+
+> **¿Tu web tiene las bases técnicas para posicionar en 2026 o está construida sobre arena?**
+>
+> Una auditoría técnica SEO identifica los problemas que frenan tu posicionamiento — los que no se ven a simple vista pero que Google sí ve. Resultados en 72 horas.
+>
+> **[Solicitar Auditoría Técnica SEO →](/contacto)**
+
+---
+
+## Sugerencias Visuales
+
+- **Dashboard CWV**: mockup de los métricas Core Web Vitals en PageSpeed Insights con los umbrales verde/naranja/rojo
+- **Diagrama de arquitectura silo**: visualización del flujo de link equity entre páginas
+- **Checklist técnica**: los 50 puntos del audit técnico en formato visual
+- **Comparativa de rendering**: diagrama SSR vs. SSG vs. CSR con impacto en SEO
+
+---
+
+## Schema Markup Recomendado
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "SEO Técnico en 2026: La Guía de Arquitectura que Posiciona Sitios Premium",
+  "author": {
+    "@type": "Person",
+    "name": "Félix Molina",
+    "url": "https://felixmolina.es"
+  },
+  "about": [
+    {"@type": "Thing", "name": "Core Web Vitals"},
+    {"@type": "Thing", "name": "SEO técnico"},
+    {"@type": "Thing", "name": "Schema markup"}
+  ]
+}
+```
+
+---
+
+## Enlaces Internos
+
+- [Topical Authority: Dominio Semántico](/blog/topical-authority)
+- [GEO: Generative Engine Optimization](/blog/geo-generative-engine-optimization)
+- [Consultor SEO Sevilla](/blog/consultor-seo-sevilla)
+- [Automatización SEO con IA](/blog/automatizacion-seo-ia)
+- [Servicios →](/servicios) | [Contactar →](/contacto)
