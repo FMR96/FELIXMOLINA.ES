@@ -331,6 +331,17 @@ const SEO_ARTICLES: SeoMeta[] = [
     keyword: "marketing gastronomico sevilla",
     funnel: "MOFU",
   },
+  {
+    slug: "caso-exito-seo-gelato-roma-mairena",
+    title: "Cómo llevamos a una cafetería de Mairena del Aljarafe a la primera página de Google",
+    cluster: "SEO para Restaurantes",
+    date: "2026-05-19",
+    readTime: "7 min",
+    metaDescription:
+      "Félix Molina cuenta cómo trabajó el SEO local de Gelato Roma Mairena: herramientas, proceso y resultados reales. Un caso práctico de éxito.",
+    keyword: "cafetería Mairena del Aljarafe",
+    funnel: "TOFU",
+  },
 ]
 
 // ─── Category system ─────────────────────────────────────────────────────────
