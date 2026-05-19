@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { ChevronRight, Menu, Monitor, Rocket, Layers, Lightbulb, Code2, Bell, Mail, MessageCircle, Rss } from "lucide-react"
+import { ChevronRight, Menu, Monitor, Rocket, Layers, Lightbulb, Code2, Mail, MessageCircle, Rss } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import CommandCenterPage from "./command-center/page"
 import AgentNetworkPage from "./agent-network/page"
@@ -125,9 +125,6 @@ export default function FelixMolinaWeb() {
           </div>
           <div className="flex items-center gap-4">
             <div className="text-xs text-neutral-500 hidden sm:block">Building systems that scale businesses.</div>
-            <Button variant="ghost" size="icon" className="text-neutral-400 hover:text-orange-500">
-              <Bell className="w-4 h-4" />
-            </Button>
             <a href="mailto:consultor@felixmolina.es">
               <Button variant="ghost" size="icon" className="text-neutral-400 hover:text-orange-500">
                 <Mail className="w-4 h-4" />
