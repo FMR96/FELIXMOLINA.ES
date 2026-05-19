@@ -37,8 +37,8 @@ export default function AvisoLegalPage() {
             <p><span className="text-neutral-500">Domicilio:</span> [COMPLETAR], España</p>
             <p>
               <span className="text-neutral-500">Correo electrónico:</span>{" "}
-              <a href="mailto:felixmolina96@gmail.com" className="text-orange-500 hover:underline">
-                felixmolina96@gmail.com
+              <a href="mailto:consultor@felixmolina.es" className="text-orange-500 hover:underline">
+                consultor@felixmolina.es
               </a>
             </p>
             <p><span className="text-neutral-500">Teléfono:</span> +34 664 861 029</p>

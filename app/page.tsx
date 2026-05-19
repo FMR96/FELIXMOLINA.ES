@@ -128,9 +128,11 @@ export default function FelixMolinaWeb() {
             <Button variant="ghost" size="icon" className="text-neutral-400 hover:text-orange-500">
               <Bell className="w-4 h-4" />
             </Button>
-            <Button variant="ghost" size="icon" className="text-neutral-400 hover:text-orange-500">
-              <Mail className="w-4 h-4" />
-            </Button>
+            <a href="mailto:consultor@felixmolina.es">
+              <Button variant="ghost" size="icon" className="text-neutral-400 hover:text-orange-500">
+                <Mail className="w-4 h-4" />
+              </Button>
+            </a>
             <a href="https://wa.me/34664861029" target="_blank" rel="noopener noreferrer">
               <Button variant="ghost" size="icon" className="text-neutral-400 hover:text-orange-500">
                 <MessageCircle className="w-4 h-4" />

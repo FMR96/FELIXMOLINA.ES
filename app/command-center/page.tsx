@@ -56,10 +56,12 @@ export default function SobreMiPage() {
             </div>
 
             <div className="flex gap-2">
-              <Button size="sm" className="bg-orange-500 hover:bg-orange-600 text-white flex-1">
-                <Mail className="w-3 h-3 mr-1" />
-                Contacto
-              </Button>
+              <a href="mailto:consultor@felixmolina.es" className="flex-1">
+                <Button size="sm" className="bg-orange-500 hover:bg-orange-600 text-white w-full">
+                  <Mail className="w-3 h-3 mr-1" />
+                  Contacto
+                </Button>
+              </a>
               <a href="https://wa.me/34664861029" target="_blank" rel="noopener noreferrer">
                 <Button size="sm" variant="outline" className="border-neutral-700 text-neutral-400 hover:text-white hover:bg-neutral-800 bg-transparent">
                   <MessageCircle className="w-3 h-3" />
