@@ -23,5 +23,17 @@ Allow: /
 User-agent: anthropic-ai
 Allow: /
 
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+# LLMs.txt — optimización para modelos de lenguaje
+# https://felixmolina.es/llms.txt
+
 # Sitemap
 Sitemap: https://felixmolina.es/sitemap.xml
