@@ -364,6 +364,17 @@ const SEO_ARTICLES: SeoMeta[] = [
     keyword: "agencia de marketing Sevilla",
     funnel: "TOFU",
   },
+  {
+    slug: "caso-exito-seo-javi-dieguez",
+    title: "SEO para readaptadores deportivos: cómo Javi Dieguez empezó a captar pacientes desde Google",
+    cluster: "SEO Local Sevilla",
+    date: "2026-05-20",
+    readTime: "6 min",
+    metaDescription:
+      "Félix Molina explica cómo trabajó el SEO de Javi Dieguez, readaptador deportivo en Sevilla. De la invisibilidad digital a captar desde Google.",
+    keyword: "readaptador deportivo Sevilla",
+    funnel: "TOFU",
+  },
 ]
 
 // ─── Category system ─────────────────────────────────────────────────────────
