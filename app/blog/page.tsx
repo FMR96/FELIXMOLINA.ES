@@ -342,6 +342,17 @@ const SEO_ARTICLES: SeoMeta[] = [
     keyword: "cafetería Mairena del Aljarafe",
     funnel: "TOFU",
   },
+  {
+    slug: "caso-exito-seo-foodly",
+    title: "SEO para una consultora gastronómica: cómo Foodly dejó de depender del boca a boca",
+    cluster: "SEO para Restaurantes",
+    date: "2026-05-20",
+    readTime: "7 min",
+    metaDescription:
+      "Félix Molina explica cómo trabajó el SEO y la analítica digital de Foodly, consultora gastronómica. Proceso, herramientas y resultados reales.",
+    keyword: "consultoría gastronómica SEO",
+    funnel: "TOFU",
+  },
 ]
 
 // ─── Category system ─────────────────────────────────────────────────────────
