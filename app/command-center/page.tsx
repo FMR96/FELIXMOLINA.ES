@@ -16,9 +16,11 @@ export default function SobreMiPage() {
           </CardHeader>
           <CardContent>
             <div className="flex items-center gap-4 mb-6">
-              <div className="w-16 h-16 rounded-full bg-orange-500 flex items-center justify-center text-white font-bold text-xl font-mono flex-shrink-0">
-                FM
-              </div>
+              <img
+                src="/FELIX_MOLINA.JPG"
+                alt="Félix Molina"
+                className="w-16 h-16 rounded-full object-cover object-top flex-shrink-0 border-2 border-orange-500"
+              />
               <div>
                 <div className="text-xl font-bold text-white">Félix Molina</div>
                 <div className="text-xs text-orange-500 font-mono tracking-wider">EMPRENDEDOR · BUILDER</div>
