@@ -18,15 +18,28 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getPostBySlug(slug)
   if (!post) return {}
 
+  const postUrl = `https://felixmolina.es/blog/${slug}`
+
   return {
     title: post.metaTitle,
     description: post.metaDescription,
     keywords: [post.keyword, ...post.keywordsSecondary].join(", "),
+    alternates: { canonical: postUrl },
     openGraph: {
       title: post.metaTitle,
       description: post.metaDescription,
       type: "article",
       publishedTime: post.date,
+      url: postUrl,
+      locale: "es_ES",
+      siteName: "Félix Molina",
+    },
+    twitter: {
+      card: "summary",
+      site: "@xfmr96",
+      creator: "@xfmr96",
+      title: post.metaTitle,
+      description: post.metaDescription,
     },
   }
 }
@@ -115,19 +128,29 @@ export default async function BlogPostPage({ params }: Props) {
   const post = getPostBySlug(slug)
   if (!post) notFound()
 
+  const postUrl = `https://felixmolina.es/blog/${slug}`
+
   const schemaArticle = {
     "@context": "https://schema.org",
     "@type": "Article",
+    "@id": `${postUrl}#article`,
+    url: postUrl,
+    mainEntityOfPage: { "@type": "WebPage", "@id": postUrl },
     headline: post.h1,
     description: post.metaDescription,
     author: {
       "@type": "Person",
+      "@id": "https://felixmolina.es/#felix-molina",
       name: "Félix Molina",
       url: "https://felixmolina.es",
+    },
+    publisher: {
+      "@id": "https://felixmolina.es/#felix-molina",
     },
     datePublished: post.date,
     dateModified: post.date,
     keywords: [post.keyword, ...post.keywordsSecondary].join(", "),
+    inLanguage: "es-ES",
   }
 
   const rendered = renderMarkdown(post.content)
