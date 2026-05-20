@@ -52,8 +52,8 @@ export default function SobreMiPage() {
 
             <div className="p-3 bg-neutral-800 border border-neutral-700 rounded mb-4">
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
-                <span className="text-xs text-white">DISPONIBLE PARA COLABORAR</span>
+                <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></div>
+                <span className="text-xs text-white tracking-wider">Estrategia. Datos. Dominio.</span>
               </div>
             </div>
 
