@@ -39,13 +39,13 @@ function renderMarkdown(content: string): string {
     // Inline code
     .replace(/`([^`]+)`/g, '<code class="bg-neutral-800 text-orange-400 px-1.5 py-0.5 rounded text-xs font-mono">$1</code>')
     // H2
-    .replace(/^## (.+)$/gm, '<h2 class="text-lg font-bold text-white mt-10 mb-4 border-l-2 border-orange-500 pl-4">$1</h2>')
+    .replace(/^## (.+)$/gm, '<h2 class="text-xl font-bold text-white mt-10 mb-4 border-l-2 border-orange-500 pl-4">$1</h2>')
     // H3
-    .replace(/^### (.+)$/gm, '<h3 class="text-base font-bold text-white mt-8 mb-3">$1</h3>')
+    .replace(/^### (.+)$/gm, '<h3 class="text-lg font-bold text-white mt-8 mb-3">$1</h3>')
     // H4
-    .replace(/^#### (.+)$/gm, '<h4 class="text-sm font-bold text-neutral-200 mt-6 mb-2">$1</h4>')
+    .replace(/^#### (.+)$/gm, '<h4 class="text-base font-bold text-neutral-200 mt-6 mb-2">$1</h4>')
     // Blockquotes
-    .replace(/^> (.+)$/gm, '<blockquote class="border-l-4 border-orange-500 pl-4 my-6 text-sm text-neutral-300 italic leading-relaxed">$1</blockquote>')
+    .replace(/^> (.+)$/gm, '<blockquote class="border-l-4 border-orange-500 pl-4 my-6 text-base text-neutral-300 italic leading-relaxed">$1</blockquote>')
     // Bold
     .replace(/\*\*(.+?)\*\*/g, '<strong class="text-white font-semibold">$1</strong>')
     // Tables
@@ -63,10 +63,10 @@ function renderMarkdown(content: string): string {
       return `<div class="overflow-x-auto my-6"><table class="w-full border-collapse border border-neutral-700 rounded-lg overflow-hidden"><thead class="bg-neutral-900"><tr>${headerCells}</tr></thead><tbody class="bg-neutral-900/50">${bodyRows}</tbody></table></div>`
     })
     // Unordered lists
-    .replace(/^[-*] (.+)$/gm, '<li class="text-sm text-neutral-300 leading-relaxed ml-4 list-disc">$1</li>')
+    .replace(/^[-*] (.+)$/gm, '<li class="text-base text-neutral-300 leading-relaxed ml-4 list-disc">$1</li>')
     .replace(/(<li[^>]*>.*<\/li>\n?)+/g, (m) => `<ul class="space-y-1.5 my-4">${m}</ul>`)
     // Ordered lists
-    .replace(/^\d+\. (.+)$/gm, '<li class="text-sm text-neutral-300 leading-relaxed ml-4 list-decimal">$1</li>')
+    .replace(/^\d+\. (.+)$/gm, '<li class="text-base text-neutral-300 leading-relaxed ml-4 list-decimal">$1</li>')
     // Internal links
     .replace(/\[([^\]]+)\]\(\/([^)]+)\)/g,
       '<a href="/$2" class="text-orange-400 hover:text-orange-300 underline underline-offset-2 transition-colors">$1</a>')
@@ -78,7 +78,7 @@ function renderMarkdown(content: string): string {
     .replace(/- \[x\] (.+)/g, '<li class="text-sm text-neutral-300 flex items-center gap-2"><span class="w-3 h-3 bg-orange-500 rounded-sm inline-block flex-shrink-0"></span>$1</li>')
     // Paragraphs (lines not starting with HTML tags)
     .replace(/^(?!<[a-z])(.+)$/gm, (m) =>
-      m.trim() ? `<p class="text-sm text-neutral-300 leading-relaxed my-3">${m}</p>` : "")
+      m.trim() ? `<p class="text-base text-neutral-300 leading-relaxed my-3">${m}</p>` : "")
     // HR
     .replace(/^---$/gm, '<hr class="border-neutral-800 my-8">')
     // Clean up empty paragraphs
