@@ -23,7 +23,7 @@ export default function SobreMiPage() {
               />
               <div>
                 <div className="text-xl font-bold text-white">Félix Molina</div>
-                <div className="text-xs text-orange-500 font-mono tracking-wider">CONSULTOR</div>
+                <div className="text-xs text-orange-500 font-mono tracking-wider">CONSULTOR TECNOLÓGICO</div>
               </div>
             </div>
 
