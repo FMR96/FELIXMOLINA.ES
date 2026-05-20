@@ -8,14 +8,14 @@ import { AnalyticsProvider } from "@/components/analytics-provider"
 const geistMono = GeistMono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Félix Molina | Consultor Tecnológico y Builder",
+  title: "Félix Molina | Consultor SEO, Automatización IA · Sevilla",
   description: "Félix Molina es consultor tecnológico en Sevilla. SEO técnico, automatización con IA y marketing digital para pymes, restaurantes y emprendedores.",
   authors: [{ name: "Félix Molina", url: "https://www.felixmolina.es" }],
   creator: "Félix Molina",
   metadataBase: new URL("https://www.felixmolina.es"),
   alternates: { canonical: "https://www.felixmolina.es" },
   openGraph: {
-    title: "Félix Molina | Consultor Tecnológico y Builder",
+    title: "Félix Molina | Consultor SEO, Automatización IA · Sevilla",
     description: "Félix Molina es consultor tecnológico en Sevilla. SEO técnico, automatización con IA y marketing digital para pymes, restaurantes y emprendedores.",
     url: "https://www.felixmolina.es",
     siteName: "Félix Molina",

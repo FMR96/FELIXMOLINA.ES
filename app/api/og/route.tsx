@@ -5,11 +5,11 @@ export const runtime = "edge"
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url)
-  const title = searchParams.get("title") ?? "Félix Molina"
+  const title = searchParams.get("title") ?? "Félix Molina | Consultor SEO, Automatización IA · Sevilla"
   const description = searchParams.get("description") ?? "Consultor Tecnológico · SEO · GEO · IA"
   const type = (searchParams.get("type") ?? "default") as "blog" | "venture" | "default"
 
-  const accentColor = type === "venture" ? "#f97316" : type === "blog" ? "#f97316" : "#f97316"
+  const accentColor = "#f97316"
 
   return new ImageResponse(
     (
@@ -37,7 +37,7 @@ export async function GET(request: NextRequest) {
           }}
         />
 
-        {/* Grid background lines */}
+        {/* Grid background */}
         <div
           style={{
             position: "absolute",
@@ -48,19 +48,18 @@ export async function GET(request: NextRequest) {
           }}
         />
 
-        {/* Header: FÉLIX MOLINA label */}
+        {/* Header: FÉLIX MOLINA + type label */}
         <div
           style={{
             display: "flex",
             alignItems: "center",
             gap: "12px",
-            marginBottom: "auto",
           }}
         >
           <div
             style={{
               color: accentColor,
-              fontSize: "14px",
+              fontSize: "15px",
               fontWeight: 700,
               letterSpacing: "0.2em",
               textTransform: "uppercase",
@@ -68,7 +67,7 @@ export async function GET(request: NextRequest) {
           >
             FÉLIX MOLINA
           </div>
-          <div style={{ color: "#525252", fontSize: "14px" }}>·</div>
+          <div style={{ color: "#525252", fontSize: "15px" }}>·</div>
           <div
             style={{
               color: "#737373",
@@ -81,54 +80,66 @@ export async function GET(request: NextRequest) {
           </div>
         </div>
 
-        {/* Main title */}
+        {/* Main title — flexible grow to push footer down */}
         <div
           style={{
             display: "flex",
             flexDirection: "column",
-            gap: "20px",
-            marginTop: "auto",
-            marginBottom: "48px",
+            gap: "16px",
+            flexGrow: 1,
+            justifyContent: "center",
           }}
         >
           <div
             style={{
               color: "#ffffff",
-              fontSize: title.length > 60 ? "42px" : "52px",
+              fontSize: title.length > 60 ? "40px" : title.length > 40 ? "48px" : "56px",
               fontWeight: 700,
               lineHeight: 1.15,
               letterSpacing: "-0.02em",
-              maxWidth: "900px",
+              maxWidth: "960px",
             }}
           >
             {title}
           </div>
 
-          {description && (
+          {description && type === "blog" && (
             <div
               style={{
                 color: "#a3a3a3",
-                fontSize: "20px",
+                fontSize: "19px",
                 lineHeight: 1.5,
-                maxWidth: "800px",
+                maxWidth: "820px",
               }}
             >
-              {description.length > 120 ? description.slice(0, 117) + "..." : description}
+              {description.length > 110 ? description.slice(0, 107) + "..." : description}
             </div>
           )}
         </div>
 
-        {/* Footer */}
+        {/* Footer: CTA izquierda + URL derecha */}
         <div
           style={{
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            borderTop: "1px solid #262626",
-            paddingTop: "24px",
+            borderTop: "1px solid #1f1f1f",
+            paddingTop: "22px",
+            marginTop: "0px",
           }}
         >
-          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          {/* CTA */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+              backgroundColor: "#111111",
+              border: "1px solid #2a2a2a",
+              borderRadius: "6px",
+              padding: "10px 20px",
+            }}
+          >
             <div
               style={{
                 width: "8px",
@@ -137,15 +148,24 @@ export async function GET(request: NextRequest) {
                 backgroundColor: accentColor,
               }}
             />
-            <div style={{ color: "#737373", fontSize: "14px", letterSpacing: "0.05em" }}>
-              Consultor Tecnológico · SEO · GEO · Automatización IA
+            <div
+              style={{
+                color: "#ffffff",
+                fontSize: "18px",
+                fontWeight: 600,
+                letterSpacing: "0.01em",
+              }}
+            >
+              Agenda una llamada gratuita →
             </div>
           </div>
+
+          {/* URL */}
           <div
             style={{
-              color: accentColor,
-              fontSize: "14px",
-              fontWeight: 600,
+              color: "#6b7280",
+              fontSize: "15px",
+              fontWeight: 500,
               letterSpacing: "0.05em",
             }}
           >
