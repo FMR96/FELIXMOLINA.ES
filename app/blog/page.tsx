@@ -398,6 +398,17 @@ const SEO_ARTICLES: SeoMeta[] = [
     funnel: "TOFU",
   },
   {
+    slug: "screaming-frog-guia-auditoria-seo",
+    title: "Screaming Frog SEO Spider: Guía de Auditoría Técnica Profesional",
+    cluster: "SEO Técnico Moderno",
+    date: "2026-05-20",
+    readTime: "15 min",
+    metaDescription:
+      "Guía técnica completa de Screaming Frog SEO Spider: configuración, flujo de auditoría, análisis post-crawl y funcionalidades avanzadas. Por Félix Molina.",
+    keyword: "screaming frog seo spider",
+    funnel: "TOFU",
+  },
+  {
     slug: "caso-exito-seo-el-pedroso-club",
     title: "SEO para un pub en un pueblo de Sevilla: el caso de El Pedroso Club",
     cluster: "SEO Local Sevilla",

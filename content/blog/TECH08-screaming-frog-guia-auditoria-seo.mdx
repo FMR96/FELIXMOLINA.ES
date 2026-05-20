@@ -1,0 +1,177 @@
+---
+title: "Screaming Frog SEO Spider: Guía de Auditoría Técnica Profesional"
+h1: "Screaming Frog SEO Spider: Guía de Auditoría Técnica Profesional"
+slug: "screaming-frog-guia-auditoria-seo"
+metaTitle: "Screaming Frog: Guía de Auditoría SEO Técnica Profesional | Félix Molina"
+metaDescription: "Guía técnica completa de Screaming Frog SEO Spider: configuración, flujo de auditoría, análisis post-crawl y funcionalidades avanzadas. Por Félix Molina, consultor SEO."
+keyword: "screaming frog seo spider"
+keywordsSecondary:
+  - "auditoría SEO técnica"
+  - "crawl SEO herramientas"
+  - "screaming frog configuración"
+  - "análisis técnico SEO"
+  - "herramientas SEO profesional"
+searchIntent: "informacional"
+funnel: "TOFU"
+cluster: "SEO Técnico Moderno"
+publishOrder: 24
+date: "2026-05-20"
+readTime: "15 min"
+schema: ["Article", "HowTo", "Person"]
+---
+
+## Qué es Screaming Frog y por qué es el estándar de la industria
+
+Screaming Frog SEO Spider es un crawler de escritorio que simula el comportamiento de Googlebot recorriendo una web URL por URL, extrayendo datos de cada recurso encontrado: páginas, imágenes, CSS, JavaScript, redirecciones, errores. El resultado es una base de datos local con la que puedes identificar cualquier problema técnico que afecte al rastreo, la indexación o el posicionamiento.
+
+Es el estándar en auditorías profesionales por tres razones: velocidad (analiza miles de URLs en minutos), profundidad (extrae más de 40 métricas por URL en modo básico, y cualquier dato personalizado via XPath/CSS) y exportación (datos limpios a CSV, Excel o Google Sheets con un clic). La versión gratuita está limitada a 500 URLs. La licencia anual (~210 €) es una de las mejores inversiones en el stack SEO técnico.
+
+> Screaming Frog no reemplaza a Search Console ni a Ahrefs. Lo uso en combinación: GSC para datos de rendimiento real, Ahrefs para análisis de autoridad y enlazado externo, y Screaming Frog para el diagnóstico técnico interno. Cada herramienta tiene su dominio.
+
+---
+
+## Configuración antes de lanzar el crawl
+
+Un crawl mal configurado genera datos incorrectos o incompletos. Antes de pulsar Start, siempre reviso estos parámetros.
+
+### User-Agent
+
+Ruta: `Configuration → User-Agent`
+
+Por defecto, Screaming Frog usa su propio user-agent. Para auditar cómo ve Google el sitio, cambio a `Googlebot`. Algunos servidores devuelven respuestas distintas según el agente — necesito ver lo mismo que ve el buscador. También uso el user-agent de móvil (`Googlebot Smartphone`) en sitios con versiones separadas o problemas de renderizado en mobile.
+
+### Rendering JavaScript
+
+Ruta: `Configuration → Spider → Rendering`
+
+Las opciones son `None` (HTML sin renderizar), `DHTML` (JS básico) y `JavaScript` (Chromium completo). Para webs construidas con React, Next.js, Vue u otros frameworks SPA activo el modo **JavaScript**: Screaming Frog lanza un Chromium interno, renderiza cada página y extrae el DOM final, que es lo que Googlebot realmente ve tras el renderizado. El coste es velocidad — un crawl con JS activo es significativamente más lento.
+
+> **Atención:** Con rendering JS activado y sitios grandes (+10k URLs), limita el crawl por profundidad o subfolder antes de lanzar. Un crawl sin límite en un site de 100k URLs con JS puede tardar días.
+
+### Límites y exclusiones de crawl
+
+Ruta: `Configuration → Spider → Crawl` y `Configuration → Exclusions`
+
+- **Max URLs to Crawl:** fijo siempre para auditorías iniciales. Empiezo con 10.000 en sites medianos.
+- **Max Crawl Depth:** útil para detectar páginas demasiado profundas en la arquitectura.
+- **Exclusiones por regex:** excluyo patrones que no quiero en el análisis — `/wp-admin/`, `/carrito/`, `/checkout/`, parámetros de sesión (`\?sid=`), facetas de ecommerce. Sin exclusiones bien configuradas, el crawl puede multiplicarse por 10 rastreando variaciones de URL sin valor SEO.
+
+### Custom Extraction
+
+Ruta: `Configuration → Custom Extraction`
+
+Una de las funcionalidades más potentes y menos usadas. Permite extraer cualquier dato del HTML via **XPath**, **CSS Selector** o **Regex**. En mi flujo la uso habitualmente para: extraer el precio en ecommerce (`css: span.price`), validar que el schema markup está presente (`xpath: //script[@type='application/ld+json']`), o capturar breadcrumbs para validar la arquitectura de información.
+
+### Integración con APIs externas
+
+Ruta: `Configuration → API Access`
+
+Screaming Frog se integra con Google Search Console, Google Analytics 4, Majestic, Moz y Ahrefs. La integración con GSC es la más valiosa: añade datos de impresiones, clics y posición media directamente a cada URL del crawl. Así puedo correlacionar problemas técnicos con caídas de rendimiento real sin salir de la herramienta.
+
+> **Pro tip:** Guarda tus configuraciones habituales en `Configuration → Save Configuration`. Tengo plantillas separadas para auditoría inicial, ecommerce, sites con JS heavy y auditoría de contenido. Cargarlas al inicio de cada proyecto ahorra 20 minutos de setup.
+
+---
+
+## Flujo de análisis post-crawl: orden de prioridad
+
+Cuando el crawl termina, el volumen de datos puede abrumar. Mi flujo sigue siempre el mismo orden, de lo global a lo específico.
+
+**1. Visión global — Overview**
+
+`Reports → Crawl Overview` genera un resumen de todas las métricas principales: número de URLs internas, distribución de códigos de respuesta, páginas con title o meta description duplicados, imágenes sin alt text. Es el primer filtro para priorizar el resto del análisis.
+
+**2. Códigos de respuesta**
+
+Pestaña `Response Codes`. Primero los 4xx y 5xx: cada 404 o 500 es un problema que bloquea el rastreo o la indexación. Luego los 3xx: cadenas de redirección innecesarias (`Reports → Redirect Chains`) que consumen crawl budget y diluyen señales. Los 301 directos son correctos; las cadenas de 3 o más saltos necesitan corrección.
+
+**3. Titles y meta descriptions**
+
+Pestaña `Page Titles` y `Meta Description`. Busco: ausentes, duplicados, demasiado cortos (<30 chars en title), demasiado largos (>60 chars en title, >155 en description). En sites grandes el volumen de duplicados suele revelar problemas de arquitectura o parametrización que van más allá del copy.
+
+**4. H1 y estructura de encabezados**
+
+Pestaña `H1`. Páginas sin H1, con H1 duplicado, o con más de un H1. Cruzo con los titles para detectar inconsistencias entre la keyword objetivo del title y la del H1 — suelen revelar páginas que apuntan a keywords distintas sin querer.
+
+**5. Enlazado interno**
+
+Pestaña `Links` + filtro Inlinks/Outlinks. Detecto: páginas con muy pocos inlinks internos (contenido huérfano), páginas con demasiados outlinks (dilución de PageRank interno), anchor texts genéricos ("haz clic aquí") que desperdician señales semánticas.
+
+**6. Imágenes**
+
+Pestaña `Images`. Imágenes sin alt text, alt texts duplicados, imágenes demasiado pesadas (filtro por Content Size >200KB), imágenes rotas. En sites editoriales o ecommerce esta pestaña siempre da trabajo.
+
+**7. Canonical y directivas**
+
+Pestañas `Canonical` y `Directives`. Canonicals que apuntan a páginas distintas de sí mismas, páginas indexables con canonical a no-indexable, directivas noindex en páginas que deberían estar en el índice.
+
+**8. Structured Data**
+
+Pestaña `Structured Data`. Valido que el schema markup esté presente en las páginas que lo necesitan y que los tipos sean correctos. Los errores de schema no penalizan directamente, pero invalidan los rich results.
+
+---
+
+## Tabla de códigos de respuesta
+
+| Código | Significado | Impacto SEO | Acción |
+|--------|------------|-------------|--------|
+| 200 | OK — recurso accesible | Neutro / positivo | Verificar que son páginas que deben indexarse |
+| 301 | Redirección permanente | Transfiere señales (≥99%) | Verificar destino correcto, evitar cadenas |
+| 302 | Redirección temporal | No transfiere señales de forma fiable | Cambiar a 301 si la redirección es permanente |
+| 404 | No encontrado | Pierde tráfico y señales si tiene inlinks | Redirigir a URL relevante o eliminar inlinks |
+| 410 | Eliminado permanentemente | Señal explícita de eliminación a Google | Usar cuando el contenido no va a volver |
+| 500 | Error interno del servidor | Crítico — Google puede desindexar | Prioridad máxima; escalar a desarrollo |
+| 503 | Servicio no disponible | Temporal si se usa bien; grave si persiste | Solo para mantenimiento planeado con Retry-After |
+
+---
+
+## Priorización de hallazgos: qué atacar primero
+
+No todos los problemas tienen el mismo impacto.
+
+**Prioridad crítica (P1):** Errores 5xx, URLs indexables con noindex, canonicals rotos, bloqueos en robots.txt a recursos críticos, errores 404 con inlinks relevantes.
+
+**Prioridad media (P2):** Cadenas de redirección, titles/H1 duplicados, contenido duplicado interno, imágenes sin alt text, páginas sin meta description, hreflang incorrecto.
+
+**Prioridad baja (P3):** Optimización de titles/descriptions, schema markup incompleto, anchor texts genéricos, imágenes pesadas, profundidad de rastreo elevada.
+
+> En una auditoría para un cliente, el informe final no lista todos los problemas: los clasifica por impacto estimado y los agrupa por tipo de tarea. Un desarrollador no puede trabajar con una lista de 200 ítems mezclados. Agrupar los 404 juntos, los problemas de title juntos, las imágenes juntas — eso sí es ejecutable.
+
+---
+
+## Funcionalidades avanzadas que uso en proyectos reales
+
+**Custom Search** — `Configuration → Custom Search`
+
+Busca texto o patrones regex en el HTML de cada URL. Úsalo para detectar texto de desarrollo que quedó en producción, etiquetas de analítica duplicadas, fragmentos de código deprecado, o cualquier string que no debería estar en páginas públicas.
+
+**Crawl Comparison** — `File → Compare Crawls`
+
+Compara dos crawls del mismo sitio en distintas fechas. Detecta URLs que han desaparecido, titles que han cambiado, páginas que han pasado de 200 a 404, nuevas redirecciones. Esencial para seguimiento post-migración o después de un update técnico importante.
+
+**Log File Analysis** — `Mode → Log File Analysis`
+
+Importa logs del servidor para ver exactamente qué URLs rastreó Googlebot, con qué frecuencia y qué respuesta recibió. Cruza el log con el crawl de Screaming Frog para detectar: URLs que Google rastrea pero no deberían estar indexadas, páginas importantes que Google nunca visita, crawl budget desperdiciado en recursos sin valor.
+
+**Crawl en modo List** — `Mode → List`
+
+En lugar de rastrear desde la home, procesa una lista de URLs específicas. Lo uso para auditar solo las URLs exportadas desde GSC con caídas de rendimiento, o validar un conjunto de páginas tras una migración sin necesidad de re-crawlear todo el site.
+
+**Sitemap Crawl** — `Mode → Sitemap`
+
+Rastrear únicamente las URLs del sitemap XML. Revela rápidamente si el sitemap contiene URLs que devuelven 404, están redirigidas, tienen noindex o están bloqueadas en robots.txt. Inconsistencias en el sitemap son sorprendentemente comunes incluso en sites bien mantenidos.
+
+**Hreflang Validation** — `Reports → Hreflang`
+
+Para sites internacionales, Screaming Frog valida la implementación completa de hreflang: etiquetas recíprocas, etiquetas que apuntan a URLs no rastreables, valores de idioma/región incorrectos.
+
+---
+
+## Metodología y criterio profesional
+
+Screaming Frog puede generar cientos de hallazgos en un site mediano. El valor del trabajo de un consultor SEO técnico no está en listar todos esos hallazgos: está en saber cuáles importan, en qué orden atacarlos y por qué.
+
+He visto informes de auditoría de 80 páginas que no servían de nada porque mezclaban problemas críticos con mejoras menores sin distinguirlos, y sin explicar el impacto estimado de cada corrección. He visto también auditorías de 10 páginas que cambiaron completamente la visibilidad de un site porque se centraban en los 5 problemas que de verdad pesaban.
+
+La herramienta es el medio. El criterio es el trabajo.
+
+Screaming Frog me da los datos. Yo decido qué significan, qué priorizo y cómo lo comunico a quien tiene que implementar los cambios. Esa capa de interpretación y priorización es lo que diferencia un informe técnico útil de un volcado de datos.
