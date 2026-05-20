@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Screaming Frog: Guía de Auditoría SEO Técnica Profesional | Félix Molina</title>
+  <meta name="description" content="Guía técnica completa de Screaming Frog SEO Spider: configuración, flujo de auditoría, análisis post-crawl y funcionalidades avanzadas. Por Félix Molina, consultor SEO.">
+  <meta name="author" content="Félix Molina">
+  <link rel="canonical" href="https://felixmolina.es/screaming-frog-guia/">
+  <meta property="og:title" content="Screaming Frog: Guía de Auditoría SEO Técnica Profesional">
+  <meta property="og:description" content="Configuración, flujo de análisis y funcionalidades avanzadas de Screaming Frog. Metodología real de un consultor SEO técnico.">
+  <meta property="og:url" content="https://felixmolina.es/screaming-frog-guia/">
+  <meta property="og:type" content="article">
+  <meta name="robots" content="index, follow">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0d0d0d;
+      --surface:   #161616;
+      --surface2:  #1e1e1e;
+      --border:    #2a2a2a;
+      --text:      #d4d4d4;
+      --text-dim:  #737373;
+      --text-head: #f5f5f5;
+      --orange:    #f97316;
+      --orange-dim:#7c3a0e;
+      --green:     #4ade80;
+      --red:       #f87171;
+      --yellow:    #fbbf24;
+      --blue:      #60a5fa;
+      --cyan:      #22d3ee;
+      --serif:     Georgia, 'Times New Roman', serif;
+      --mono:      'Courier New', Consolas, 'Lucida Console', monospace;
+      --sans:      -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(13,13,13,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: .75rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem;
+    }
+    nav a.brand {
+      font-family: var(--mono);
+      font-size: .75rem;
+      font-weight: 700;
+      color: var(--orange);
+      text-decoration: none;
+      letter-spacing: .1em;
+    }
+    nav a.back {
+      font-family: var(--mono);
+      font-size: .7rem;
+      color: var(--text-dim);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      padding: .35rem .75rem;
+      border-radius: 4px;
+      transition: color .2s, border-color .2s;
+    }
+    nav a.back:hover { color: var(--text-head); border-color: var(--text-dim); }
+
+    /* ── LAYOUT ── */
+    .wrapper { max-width: 820px; margin: 0 auto; padding: 3rem 1.5rem 6rem; }
+
+    /* ── HEADER ── */
+    .article-header { margin-bottom: 3rem; }
+    .badge {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: .65rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--orange);
+      border: 1px solid var(--orange-dim);
+      background: rgba(249,115,22,.08);
+      padding: .25rem .75rem;
+      border-radius: 3px;
+      margin-bottom: 1.25rem;
+    }
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 700;
+      color: var(--text-head);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .lead {
+      font-size: 1.05rem;
+      color: var(--text-dim);
+      line-height: 1.8;
+      max-width: 680px;
+      margin-bottom: 1.5rem;
+    }
+    .meta {
+      font-family: var(--mono);
+      font-size: .7rem;
+      color: var(--text-dim);
+      display: flex; flex-wrap: wrap; gap: .5rem 1.5rem;
+    }
+    .meta span { display: flex; align-items: center; gap: .4rem; }
+    .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--orange); flex-shrink: 0; }
+
+    /* ── DIVIDER ── */
+    hr { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+
+    /* ── HEADINGS ── */
+    h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.2rem, 3vw, 1.55rem);
+      font-weight: 700;
+      color: var(--text-head);
+      margin: 3rem 0 1rem;
+      padding-left: 1rem;
+      border-left: 3px solid var(--orange);
+      line-height: 1.3;
+    }
+    h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-head);
+      margin: 2rem 0 .75rem;
+    }
+
+    /* ── PROSE ── */
+    p { margin-bottom: 1rem; color: var(--text); }
+    strong { color: var(--text-head); }
+    ul, ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+    li { margin-bottom: .4rem; }
+    a { color: var(--orange); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { color: #fb923c; }
+
+    /* ── CODE / MENU PATH ── */
+    code {
+      font-family: var(--mono);
+      font-size: .82em;
+      background: var(--surface2);
+      color: var(--cyan);
+      padding: .15em .45em;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+    }
+    .path {
+      font-family: var(--mono);
+      font-size: .8rem;
+      background: var(--surface2);
+      color: var(--yellow);
+      padding: .15em .55em;
+      border-radius: 3px;
+      border: 1px solid #3a3010;
+      white-space: nowrap;
+    }
+
+    /* ── CALLOUT ── */
+    .callout {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--orange);
+      border-radius: 0 6px 6px 0;
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0;
+      font-size: .9rem;
+    }
+    .callout.tip  { border-left-color: var(--green); }
+    .callout.warn { border-left-color: var(--yellow); }
+    .callout .callout-label {
+      font-family: var(--mono);
+      font-size: .65rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      margin-bottom: .35rem;
+    }
+    .callout.tip  .callout-label { color: var(--green); }
+    .callout.warn .callout-label { color: var(--yellow); }
+    .callout      .callout-label { color: var(--orange); }
+
+    /* ── STEPS ── */
+    .steps { counter-reset: step; list-style: none; padding: 0; margin: 1.5rem 0; }
+    .steps li {
+      counter-increment: step;
+      display: flex; gap: 1rem;
+      margin-bottom: 1.25rem;
+      align-items: flex-start;
+    }
+    .steps li::before {
+      content: counter(step);
+      flex-shrink: 0;
+      width: 28px; height: 28px;
+      background: var(--orange);
+      color: #000;
+      font-family: var(--mono);
+      font-size: .75rem;
+      font-weight: 700;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: .15rem;
+    }
+    .steps li .step-body { flex: 1; }
+    .steps li .step-title { font-weight: 600; color: var(--text-head); display: block; margin-bottom: .25rem; }
+
+    /* ── TABLE ── */
+    .table-wrap { overflow-x: auto; margin: 1.5rem 0; border-radius: 8px; border: 1px solid var(--border); }
+    table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+    thead { background: var(--surface2); }
+    th {
+      text-align: left;
+      padding: .75rem 1rem;
+      font-family: var(--mono);
+      font-size: .7rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--text-dim);
+      border-bottom: 1px solid var(--border);
+    }
+    td {
+      padding: .65rem 1rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(255,255,255,.02); }
+    .code-2xx { color: var(--green);  font-family: var(--mono); font-weight: 700; }
+    .code-3xx { color: var(--yellow); font-family: var(--mono); font-weight: 700; }
+    .code-4xx { color: var(--red);    font-family: var(--mono); font-weight: 700; }
+    .code-5xx { color: #e879f9;       font-family: var(--mono); font-weight: 700; }
+
+    /* ── GRID ── */
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+    }
+    .card-icon { font-size: 1.25rem; margin-bottom: .6rem; }
+    .card h4 { font-size: .9rem; font-weight: 600; color: var(--text-head); margin-bottom: .4rem; }
+    .card p  { font-size: .82rem; color: var(--text-dim); margin: 0; line-height: 1.6; }
+
+    /* ── PRIORITY MATRIX ── */
+    .priority-list { list-style: none; padding: 0; margin: 1rem 0; }
+    .priority-list li {
+      display: flex; align-items: baseline; gap: .75rem;
+      padding: .6rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: .9rem;
+    }
+    .priority-list li:last-child { border-bottom: none; }
+    .prio {
+      flex-shrink: 0;
+      font-family: var(--mono);
+      font-size: .65rem;
+      font-weight: 700;
+      padding: .2rem .5rem;
+      border-radius: 3px;
+      text-transform: uppercase;
+    }
+    .p1 { background: rgba(248,113,113,.15); color: var(--red); }
+    .p2 { background: rgba(251,191,36,.12); color: var(--yellow); }
+    .p3 { background: rgba(96,165,250,.12); color: var(--blue); }
+
+    /* ── AUTHOR ── */
+    .author-card {
+      margin-top: 4rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      display: flex; align-items: center; gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+    .author-avatar {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--orange) 0%, #c2410c 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--mono); font-size: 1.2rem; font-weight: 700;
+      color: #fff; flex-shrink: 0;
+    }
+    .author-info { flex: 1; min-width: 180px; }
+    .author-name { font-weight: 700; color: var(--text-head); font-size: .95rem; }
+    .author-role { font-size: .8rem; color: var(--text-dim); font-family: var(--mono); margin-top: .1rem; }
+    .author-bio  { font-size: .82rem; color: var(--text-dim); margin-top: .5rem; line-height: 1.6; }
+
+    /* ── FOOTER ── */
+    footer {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-family: var(--mono);
+      font-size: .7rem;
+      color: var(--text-dim);
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .wrapper { padding: 2rem 1rem 4rem; }
+      h1 { font-size: 1.5rem; }
+      nav { padding: .6rem 1rem; }
+    }
+
+    /* ── FOCUS (accesibilidad) ── */
+    :focus-visible {
+      outline: 2px solid var(--orange);
+      outline-offset: 3px;
+      border-radius: 3px;
+    }
+
+    /* ── SKIP LINK ── */
+    .skip-link {
+      position: absolute; left: -9999px; top: auto;
+      background: var(--orange); color: #000;
+      padding: .5rem 1rem; font-size: .85rem; font-weight: 600;
+      z-index: 999;
+    }
+    .skip-link:focus { left: 1rem; top: 1rem; }
+  </style>
+</head>
+
+<body>
+  <a href="#main" class="skip-link">Saltar al contenido</a>
+
+  <nav aria-label="Navegación principal">
+    <a href="https://felixmolina.es" class="brand" aria-label="Inicio — Félix Molina">FÉLIX MOLINA</a>
+    <a href="https://felixmolina.es/blog" class="back" aria-label="Volver al blog">← Blog</a>
+  </nav>
+
+  <main id="main">
+    <div class="wrapper">
+
+      <!-- HEADER -->
+      <header class="article-header">
+        <div class="badge">SEO Técnico · Herramientas</div>
+        <h1>Screaming Frog SEO Spider:<br>Guía de Auditoría Técnica Profesional</h1>
+        <p class="lead">
+          Screaming Frog es, de largo, la herramienta que más uso en mi flujo de trabajo de auditoría SEO técnica.
+          Esta guía recoge mi configuración real, el orden en que proceso los datos y las funcionalidades avanzadas
+          que marcan la diferencia entre una auditoría superficial y un diagnóstico que sirve de verdad.
+        </p>
+        <div class="meta" aria-label="Metadatos del artículo">
+          <span><span class="dot" aria-hidden="true"></span>Félix Molina</span>
+          <span><span class="dot" aria-hidden="true"></span>felixmolina.es</span>
+          <span><span class="dot" aria-hidden="true"></span>Lectura: 15 min</span>
+          <span><span class="dot" aria-hidden="true"></span>Última actualización: mayo 2026</span>
+        </div>
+      </header>
+
+      <hr>
+
+      <!-- 1. QUÉ ES -->
+      <section aria-labelledby="h-que-es">
+        <h2 id="h-que-es">Qué es Screaming Frog y por qué es el estándar de la industria</h2>
+        <p>
+          Screaming Frog SEO Spider es un crawler de escritorio desarrollado por Screaming Frog Ltd (UK).
+          Simula el comportamiento de Googlebot recorriendo una web URL por URL, extrayendo datos de cada
+          recurso encontrado: páginas, imágenes, CSS, JavaScript, redirecciones, errores.
+          El resultado es una base de datos local con la que puedes identificar cualquier problema técnico
+          que afecte al rastreo, la indexación o el posicionamiento.
+        </p>
+        <p>
+          Es el estándar en auditorías profesionales por tres razones: velocidad (analiza miles de URLs
+          en minutos), profundidad (extrae más de 40 métricas por URL en modo básico, y cualquier dato
+          personalizado que necesites via XPath/CSS) y exportación (datos limpios a CSV, Excel o Google Sheets
+          con un clic). La versión gratuita está limitada a 500 URLs. La licencia anual de pago (~210 €)
+          es una de las mejores inversiones en el stack SEO técnico.
+        </p>
+
+        <div class="callout">
+          <div class="callout-label">Contexto</div>
+          Screaming Frog no reemplaza a Search Console ni a Ahrefs. Lo uso en combinación: GSC para datos
+          de rendimiento real, Ahrefs para análisis de autoridad y enlazado externo, y Screaming Frog para
+          el diagnóstico técnico interno. Cada herramienta tiene su dominio.
+        </div>
+      </section>
+
+      <!-- 2. CONFIGURACIÓN -->
+      <section aria-labelledby="h-config">
+        <h2 id="h-config">Configuración antes de lanzar el crawl</h2>
+        <p>
+          Un crawl mal configurado genera datos incorrectos o incompletos. Antes de pulsar Start,
+          siempre reviso estos parámetros:
+        </p>
+
+        <h3>User-Agent</h3>
+        <p>
+          Ruta: <span class="path">Configuration → User-Agent</span>
+        </p>
+        <p>
+          Por defecto, Screaming Frog usa su propio user-agent. Para auditar cómo ve Google el sitio,
+          cambio a <code>Googlebot</code>. Algunos servidores devuelven respuestas distintas según el
+          agente — necesito ver lo mismo que ve el buscador. También uso el user-agent de móvil
+          (<code>Googlebot Smartphone</code>) en sitios con versiones separadas o problemas de
+          renderizado en mobile.
+        </p>
+
+        <h3>Rendering JavaScript</h3>
+        <p>
+          Ruta: <span class="path">Configuration → Spider → Rendering</span>
+        </p>
+        <p>
+          Las opciones son <code>None</code> (HTML sin renderizar), <code>DHTML</code> (JS básico)
+          y <code>JavaScript</code> (Chromium completo). Para webs construidas con React, Next.js,
+          Vue u otros frameworks SPA activo el modo <strong>JavaScript</strong>: Screaming Frog lanza
+          un Chromium interno, renderiza cada página y extrae el DOM final, que es lo que Googlebot
+          realmente ve tras el renderizado. El coste es velocidad — un crawl con JS activo es
+          significativamente más lento.
+        </p>
+
+        <div class="callout warn">
+          <div class="callout-label">Atención</div>
+          Con rendering JS activado y sitios grandes (+10k URLs), limita el crawl por profundidad o
+          subfolder antes de lanzar. Un crawl sin límite en un site de 100k URLs con JS puede tardar días.
+        </div>
+
+        <h3>Límites y exclusiones de crawl</h3>
+        <p>
+          Ruta: <span class="path">Configuration → Spider → Crawl</span> y
+          <span class="path">Configuration → Exclusions</span>
+        </p>
+        <ul>
+          <li><strong>Max URLs to Crawl:</strong> fijo siempre para auditorías iniciales. Empiezo con 10.000 en sites medianos.</li>
+          <li><strong>Max Crawl Depth:</strong> útil para detectar páginas demasiado profundas en la arquitectura.</li>
+          <li><strong>Exclusiones por regex:</strong> excluyo patrones que no quiero en el análisis —
+            <code>/wp-admin/</code>, <code>/carrito/</code>, <code>/checkout/</code>,
+            parámetros de sesión (<code>\?sid=</code>), facetas de ecommerce. Sin exclusiones bien
+            configuradas, el crawl puede multiplicarse por 10 rastreando variaciones de URL sin valor SEO.</li>
+        </ul>
+
+        <h3>Custom Extraction</h3>
+        <p>
+          Ruta: <span class="path">Configuration → Custom Extraction</span>
+        </p>
+        <p>
+          Una de las funcionalidades más potentes y menos usadas. Permite extraer cualquier dato del HTML
+          via <strong>XPath</strong>, <strong>CSS Selector</strong> o <strong>Regex</strong>. En mi flujo
+          la uso habitualmente para: extraer el precio en ecommerce
+          (<code>css: span.price</code>), validar que el schema markup está presente
+          (<code>xpath: //script[@type='application/ld+json']</code>), o capturar
+          breadcrumbs para validar la arquitectura de información.
+        </p>
+
+        <h3>Integración con APIs externas</h3>
+        <p>
+          Ruta: <span class="path">Configuration → API Access</span>
+        </p>
+        <p>
+          Screaming Frog se integra con Google Search Console, Google Analytics 4, Majestic, Moz y Ahrefs.
+          La integración con GSC es la más valiosa: añade datos de impresiones, clics y posición media
+          directamente a cada URL del crawl. Así puedo correlacionar problemas técnicos con caídas de
+          rendimiento real sin salir de la herramienta.
+        </p>
+
+        <div class="callout tip">
+          <div class="callout-label">Pro tip</div>
+          Guarda tus configuraciones habituales en
+          <span class="path">Configuration → Save Configuration</span>. Tengo plantillas separadas para:
+          auditoría inicial, ecommerce, sites con JS heavy, y auditoría de contenido. Cargarlas al inicio
+          de cada proyecto ahorra 20 minutos de setup.
+        </div>
+      </section>
+
+      <!-- 3. FLUJO POST-CRAWL -->
+      <section aria-labelledby="h-flujo">
+        <h2 id="h-flujo">Flujo de análisis post-crawl: orden de prioridad</h2>
+        <p>
+          Cuando el crawl termina, el volumen de datos puede abrumar. Mi flujo sigue siempre el mismo
+          orden, de lo global a lo específico:
+        </p>
+
+        <ol class="steps">
+          <li>
+            <div class="step-body">
+              <span class="step-title">Visión global — Overview</span>
+              <span class="path">Reports → Crawl Overview</span> genera un resumen de todas las métricas
+              principales. Número de URLs internas, distribución de códigos de respuesta, páginas con
+              title o meta description duplicados, imágenes sin alt text. Es el primer filtro para
+              priorizar el resto del análisis.
+            </div>
+          </li>
+          <li>
+            <div class="step-body">
+              <span class="step-title">Códigos de respuesta</span>
+              Pestaña <span class="path">Response Codes</span>. Primero los 4xx y 5xx: cada 404
+              o 500 es un problema que bloquea el rastreo o la indexación. Luego los 3xx: cadenas
+              de redirección innecesarias (<span class="path">Reports → Redirect Chains</span>)
+              que consumen crawl budget y diluyen señales. Los 301 directos son correctos; las cadenas
+              de 3 o más saltos necesitan corrección.
+            </div>
+          </li>
+          <li>
+            <div class="step-body">
+              <span class="step-title">Titles y meta descriptions</span>
+              Pestaña <span class="path">Page Titles</span> y <span class="path">Meta Description</span>.
+              Busco: ausentes, duplicados, demasiado cortos (&lt;30 chars en title), demasiado largos
+              (&gt;60 chars en title, &gt;155 en description). En sites grandes el volumen de duplicados
+              suele revelar problemas de arquitectura o parametrización que van más allá del copy.
+            </div>
+          </li>
+          <li>
+            <div class="step-body">
+              <span class="step-title">H1 y estructura de encabezados</span>
+              Pestaña <span class="path">H1</span>. Páginas sin H1, con H1 duplicado, o con más de un H1.
+              Cruzo con los titles para detectar inconsistencias entre la keyword objetivo del title y
+              la del H1 — suelen revelar páginas que apuntan a keywords distintas sin querer.
+            </div>
+          </li>
+          <li>
+            <div class="step-body">
+              <span class="step-title">Enlazado interno</span>
+              Pestaña <span class="path">Links</span> + filtro Inlinks/Outlinks. Detecto: páginas con
+              muy pocos inlinks internos (contenido huérfano), páginas con demasiados outlinks
+              (dilución de PageRank interno), anchor texts genéricos ("haz clic aquí") que desperdician
+              señales semánticas. La exportación a Excel con pivot table da el cuadro completo rápido.
+            </div>
+          </li>
+          <li>
+            <div class="step-body">
+              <span class="step-title">Imágenes</span>
+              Pestaña <span class="path">Images</span>. Imágenes sin alt text, alt texts duplicados,
+              imágenes demasiado pesadas (filtro por Content Size &gt; 200KB), imágenes rotas.
+              En sites editoriales o ecommerce esta pestaña siempre da trabajo.
+            </div>
+          </li>
+          <li>
+            <div class="step-body">
+              <span class="step-title">Canonical y directivas</span>
+              Pestañas <span class="path">Canonical</span> y <span class="path">Directives</span>.
+              Canonicals que apuntan a páginas distintas de sí mismas (canonicalización cruzada
+              intencionada o errónea), páginas indexables con canonical a no-indexable, directivas
+              noindex en páginas que deberían estar en el índice.
+            </div>
+          </li>
+          <li>
+            <div class="step-body">
+              <span class="step-title">Structured Data</span>
+              Pestaña <span class="path">Structured Data</span> (requiere rendering activo o
+              <span class="path">Configuration → Custom Extraction</span> con XPath).
+              Valido que el schema markup esté presente en las páginas que lo necesitan y que los tipos
+              sean correctos. Los errores de schema no penalizan directamente, pero invalidan los
+              rich results.
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <!-- 4. CÓDIGOS DE RESPUESTA -->
+      <section aria-labelledby="h-codigos">
+        <h2 id="h-codigos">Tabla de códigos de respuesta: qué hacer con cada uno</h2>
+
+        <div class="table-wrap" role="region" aria-label="Tabla de códigos de respuesta HTTP">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Código</th>
+                <th scope="col">Significado</th>
+                <th scope="col">Impacto SEO</th>
+                <th scope="col">Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="code-2xx">200</span></td>
+                <td>OK — recurso accesible</td>
+                <td>Neutro / positivo</td>
+                <td>Verificar que las 200 son páginas que deben indexarse</td>
+              </tr>
+              <tr>
+                <td><span class="code-3xx">301</span></td>
+                <td>Redirección permanente</td>
+                <td>Transfiere señales (≥99%)</td>
+                <td>Verificar destino correcto, evitar cadenas</td>
+              </tr>
+              <tr>
+                <td><span class="code-3xx">302</span></td>
+                <td>Redirección temporal</td>
+                <td>No transfiere señales de forma fiable</td>
+                <td>Cambiar a 301 si la redirección es permanente</td>
+              </tr>
+              <tr>
+                <td><span class="code-3xx">307 / 308</span></td>
+                <td>Redirección temporal/permanente (HTTP/1.1)</td>
+                <td>308 equivale a 301</td>
+                <td>Igual que 301/302 según el caso</td>
+              </tr>
+              <tr>
+                <td><span class="code-4xx">404</span></td>
+                <td>No encontrado</td>
+                <td>Pierde tráfico y señales si tiene inlinks</td>
+                <td>Redirigir a URL relevante o eliminar inlinks</td>
+              </tr>
+              <tr>
+                <td><span class="code-4xx">410</span></td>
+                <td>Eliminado permanentemente</td>
+                <td>Señal explícita de eliminación a Google</td>
+                <td>Usar cuando el contenido no va a volver</td>
+              </tr>
+              <tr>
+                <td><span class="code-4xx">403</span></td>
+                <td>Prohibido</td>
+                <td>Bloquea el rastreo</td>
+                <td>Revisar permisos; si es intencional, confirmar que no hay inlinks</td>
+              </tr>
+              <tr>
+                <td><span class="code-5xx">500</span></td>
+                <td>Error interno del servidor</td>
+                <td>Crítico — Google puede desindexar</td>
+                <td>Prioridad máxima; escalar a desarrollo inmediatamente</td>
+              </tr>
+              <tr>
+                <td><span class="code-5xx">503</span></td>
+                <td>Servicio no disponible</td>
+                <td>Temporal si se usa bien; grave si persiste</td>
+                <td>Confirmar que se usa solo en mantenimiento planeado con Retry-After</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 5. PRIORIDADES -->
+      <section aria-labelledby="h-prio">
+        <h2 id="h-prio">Priorización de hallazgos: qué atacar primero</h2>
+        <p>
+          No todos los problemas tienen el mismo impacto. Mi criterio de priorización:
+        </p>
+
+        <ul class="priority-list" aria-label="Lista de prioridades de auditoría">
+          <li><span class="prio p1" aria-label="Prioridad crítica">P1</span> Errores 5xx, URLs indexables con noindex, canonicals rotos, bloqueos en robots.txt a recursos críticos</li>
+          <li><span class="prio p1" aria-label="Prioridad alta">P1</span> Errores 404 con inlinks internos o externos relevantes</li>
+          <li><span class="prio p2" aria-label="Prioridad media">P2</span> Cadenas de redirección, titles/H1 duplicados, contenido duplicado interno</li>
+          <li><span class="prio p2" aria-label="Prioridad media">P2</span> Imágenes sin alt text, páginas sin meta description, hreflang incorrecto</li>
+          <li><span class="prio p3" aria-label="Prioridad baja">P3</span> Optimización de titles/descriptions, schema markup incompleto, anchor texts genéricos</li>
+          <li><span class="prio p3" aria-label="Prioridad baja">P3</span> Imágenes pesadas, profundidad de rastreo elevada, URLs con parámetros no canonicanizadas</li>
+        </ul>
+
+        <div class="callout">
+          <div class="callout-label">Mi criterio</div>
+          En una auditoría para un cliente, el informe final no lista todos los problemas: los clasifica
+          por impacto estimado y los agrupa por tipo de tarea. Un desarrollador no puede trabajar con
+          una lista de 200 ítems mezclados. Agrupar los 404 juntos, los problemas de title juntos, las
+          imágenes juntas — eso sí es ejecutable.
+        </div>
+      </section>
+
+      <!-- 6. AVANZADO -->
+      <section aria-labelledby="h-avanzado">
+        <h2 id="h-avanzado">Funcionalidades avanzadas que uso en proyectos reales</h2>
+
+        <div class="grid-2">
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🔍</div>
+            <h4>Custom Search</h4>
+            <p>
+              Ruta: <span class="path">Configuration → Custom Search</span><br>
+              Busca texto o patrones regex en el HTML de cada URL. Úsalo para detectar: texto de
+              desarrollo que quedó en producción, etiquetas de analítica duplicadas, fragmentos de
+              código deprecado, o cualquier string que no debería estar en páginas públicas.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">📊</div>
+            <h4>Crawl Comparison</h4>
+            <p>
+              Ruta: <span class="path">File → Compare Crawls</span><br>
+              Compara dos crawls del mismo sitio en distintas fechas. Detecta URLs que han desaparecido,
+              titles que han cambiado, páginas que han pasado de 200 a 404, nuevas redirecciones.
+              Esencial para seguimiento post-migración o después de un update técnico importante.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">📋</div>
+            <h4>Log File Analysis</h4>
+            <p>
+              Ruta: <span class="path">Mode → Log File Analysis</span><br>
+              Importa logs del servidor para ver exactamente qué URLs rastreó Googlebot, con qué
+              frecuencia y qué respuesta recibió. Cruza el log con el crawl de Screaming Frog para
+              detectar: URLs que Google rastrea pero no deberían estar indexadas, páginas importantes
+              que Google nunca visita, crawl budget desperdiciado en recursos sin valor.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">📄</div>
+            <h4>Crawl en modo List</h4>
+            <p>
+              Ruta: <span class="path">Mode → List</span><br>
+              En lugar de rastrear desde la home, procesa una lista de URLs específicas.
+              Lo uso para: auditar solo las URLs exportadas desde GSC con caídas de rendimiento,
+              o validar un conjunto de páginas tras una migración sin necesidad de re-crawlear todo el site.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🗺️</div>
+            <h4>Sitemap Crawl</h4>
+            <p>
+              Ruta: <span class="path">Mode → Sitemap</span><br>
+              Rastrear únicamente las URLs del sitemap XML. Revela rápidamente si el sitemap contiene
+              URLs que devuelven 404, están redirigidas, tienen noindex o están bloqueadas en robots.txt.
+              Inconsistencias en el sitemap son sorprendentemente comunes incluso en sites bien mantenidos.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🔗</div>
+            <h4>Hreflang Validation</h4>
+            <p>
+              Ruta: <span class="path">Reports → Hreflang</span><br>
+              Para sites internacionales, Screaming Frog valida la implementación completa de hreflang:
+              etiquetas recíprocas, etiquetas que apuntan a URLs no rastreables, valores de idioma/región
+              incorrectos, y páginas que deberían tener hreflang pero no lo tienen.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- 7. METODOLOGÍA -->
+      <section aria-labelledby="h-metodologia">
+        <h2 id="h-metodologia">Reflexión sobre metodología y criterio profesional</h2>
+        <p>
+          Screaming Frog puede generar cientos de hallazgos en un site mediano. El valor del trabajo
+          de un consultor SEO técnico no está en listar todos esos hallazgos: está en saber cuáles
+          importan, en qué orden atacarlos y por qué.
+        </p>
+        <p>
+          He visto informes de auditoría de 80 páginas que no servían de nada porque mezclaban
+          problemas críticos con mejoras menores sin distinguirlos, y sin explicar el impacto estimado
+          de cada corrección. He visto también auditorías de 10 páginas que cambiaron completamente
+          la visibilidad de un site porque se centraban en los 5 problemas que de verdad pesaban.
+        </p>
+        <p>
+          La herramienta es el medio. El criterio es el trabajo.
+        </p>
+        <p>
+          Screaming Frog me da los datos. Yo decido qué significan, qué priorizo y cómo lo comunico
+          a quien tiene que implementar los cambios. Esa capa de interpretación y priorización es
+          lo que diferencia un informe técnico útil de un volcado de datos.
+        </p>
+
+        <div class="callout tip">
+          <div class="callout-label">Recurso</div>
+          La documentación oficial de Screaming Frog en
+          <a href="https://www.screamingfrog.co.uk/seo-spider/user-guide/" target="_blank" rel="noopener noreferrer">screamingfrog.co.uk</a>
+          está muy bien mantenida y es la referencia definitiva para cada parámetro de configuración.
+          Para casos avanzados de Custom Extraction con XPath, el W3Schools XPath tutorial es el recurso
+          que recomiendo cuando estoy aprendiendo un nuevo patrón.
+        </div>
+      </section>
+
+      <hr>
+
+      <!-- AUTHOR -->
+      <aside class="author-card" aria-label="Sobre el autor">
+        <div class="author-avatar" aria-hidden="true">FM</div>
+        <div class="author-info">
+          <div class="author-name">Félix Molina</div>
+          <div class="author-role">Consultor SEO · felixmolina.es</div>
+          <p class="author-bio">
+            Consultor SEO técnico independiente en Sevilla. Trabajo con negocios locales, ecommerce
+            y SaaS que necesitan visibilidad orgánica sostenible. Fundador de DRSTK.
+          </p>
+        </div>
+      </aside>
+
+      <!-- FOOTER -->
+      <footer>
+        <span>© 2026 Félix Molina — <a href="https://felixmolina.es">felixmolina.es</a></span>
+        <span>
+          <a href="https://felixmolina.es/blog">Blog</a> ·
+          <a href="mailto:consultor@felixmolina.es">consultor@felixmolina.es</a>
+        </span>
+      </footer>
+
+    </div>
+  </main>
+</body>
+</html>
