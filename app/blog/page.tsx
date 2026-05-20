@@ -397,6 +397,17 @@ const SEO_ARTICLES: SeoMeta[] = [
     keyword: "bar de tapas Mairena del Aljarafe",
     funnel: "TOFU",
   },
+  {
+    slug: "caso-exito-seo-el-pedroso-club",
+    title: "SEO para un pub en un pueblo de Sevilla: el caso de El Pedroso Club",
+    cluster: "SEO Local Sevilla",
+    date: "2026-05-20",
+    readTime: "6 min",
+    metaDescription:
+      "Félix Molina cuenta cómo trabajó el SEO de El Pedroso Club, un pub en El Pedroso, Sierra Norte de Sevilla. Visibilidad digital para el ocio rural.",
+    keyword: "pub El Pedroso Sevilla",
+    funnel: "TOFU",
+  },
 ]
 
 // ─── Category system ─────────────────────────────────────────────────────────
