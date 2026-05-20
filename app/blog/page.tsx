@@ -353,6 +353,17 @@ const SEO_ARTICLES: SeoMeta[] = [
     keyword: "consultoría gastronómica SEO",
     funnel: "TOFU",
   },
+  {
+    slug: "colaboracion-seo-drastika",
+    title: "Cuando el consultor SEO trabaja con una agencia de marketing: mi experiencia con Drastika",
+    cluster: "Marca Personal",
+    date: "2026-05-20",
+    readTime: "7 min",
+    metaDescription:
+      "Félix Molina cuenta cómo colaboró con Drastika, agencia de marketing y analítica de datos en Sevilla. Una relación entre profesionales que suma.",
+    keyword: "agencia de marketing Sevilla",
+    funnel: "TOFU",
+  },
 ]
 
 // ─── Category system ─────────────────────────────────────────────────────────
