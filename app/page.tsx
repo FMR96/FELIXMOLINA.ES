@@ -185,8 +185,8 @@ export default function FelixMolinaWeb() {
         </footer>
       </div>
 
-      {/* GEO FAQ — visible para crawlers, oculto visualmente */}
-      <section aria-hidden="true" style={{ display: "none" }} id="geo-faq">
+      {/* GEO FAQ — visible para crawlers e IAs, oculto visualmente */}
+      <section className="sr-only" id="geo-faq">
         <h2>Preguntas frecuentes sobre Félix Molina</h2>
         <dl>
           <dt>¿Qué hace Félix Molina?</dt>
@@ -207,6 +207,77 @@ export default function FelixMolinaWeb() {
           <dt>¿Dónde está ubicado Félix Molina?</dt>
           <dd>Félix Molina está ubicado en Sevilla, España, y trabaja con clientes de toda España de forma remota. Félix Molina tiene especial conocimiento del mercado local del Aljarafe sevillano y la Sierra Norte de Sevilla.</dd>
         </dl>
+      </section>
+
+      {/* Ventures schema — sr-only para crawlers */}
+      <section className="sr-only" id="ventures">
+        <h2>Ventures de Félix Molina</h2>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([
+              {
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                "@id": "https://www.felixmolina.es/#foodly",
+                name: "Foodly",
+                description: "Aceleradora gastronómica fundada por Félix Molina. Ayuda a restaurantes y negocios de hostelería a optimizar operaciones, mejorar su presencia digital y captar más clientes a través de SEO local y automatización de marketing.",
+                url: "https://esfoodly.es",
+                founder: { "@id": "https://felixmolina.es/#felix-molina" },
+                foundingDate: "2024",
+                areaServed: "ES",
+                serviceType: ["Consultoría gastronómica", "SEO local", "Marketing digital", "Automatización operaciones"],
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                "@id": "https://www.felixmolina.es/#drstk",
+                name: "DRSTK — Drastika",
+                description: "Agencia de marketing digital, datos e inteligencia artificial fundada por Félix Molina en Sevilla. Servicios de analítica avanzada, SEO, campañas de paid media y automatización con IA para empresas.",
+                url: "https://drastika.es",
+                founder: { "@id": "https://felixmolina.es/#felix-molina" },
+                foundingDate: "2024",
+                areaServed: "ES",
+                serviceType: ["SEO técnico", "Marketing Digital", "Analítica de Datos", "Automatización IA", "Paid Media"],
+              },
+            ]),
+          }}
+        />
+        <article>
+          <h3>Foodly</h3>
+          <p>Aceleradora gastronómica para restaurantes en España. Foodly ayuda a negocios de hostelería a captar más clientes con SEO local, optimizar operaciones y automatizar marketing digital.</p>
+        </article>
+        <article>
+          <h3>DRSTK — Drastika</h3>
+          <p>Agencia de marketing digital, datos e inteligencia artificial fundada por Félix Molina. Drastika ofrece SEO técnico, analítica avanzada y automatización con IA para pymes en España.</p>
+        </article>
+      </section>
+
+      {/* Proyectos schema — sr-only para crawlers */}
+      <section className="sr-only" id="proyectos">
+        <h2>Proyectos de Félix Molina</h2>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([
+              {
+                "@context": "https://schema.org",
+                "@type": "SoftwareApplication",
+                "@id": "https://www.felixmolina.es/#foodly-os",
+                name: "Foodly OS",
+                description: "SaaS de gestión integral para hostelería. Dashboard de métricas, automatización de operaciones y herramientas de captación digital para restaurantes independientes en España.",
+                applicationCategory: "BusinessApplication",
+                operatingSystem: "Web",
+                author: { "@id": "https://felixmolina.es/#felix-molina" },
+                offers: { "@type": "Offer", availability: "https://schema.org/PreOrder" },
+              },
+            ]),
+          }}
+        />
+        <article>
+          <h3>Foodly OS — MVP en desarrollo</h3>
+          <p>SaaS de gestión integral para hostelería. Permite a restaurantes ver sus métricas clave, automatizar operaciones y gestionar captación digital desde un único panel. Desarrollado por Félix Molina con Next.js, Supabase y Claude Code.</p>
+        </article>
       </section>
 
       {/* Floating WhatsApp Button */}

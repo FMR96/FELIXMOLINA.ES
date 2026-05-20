@@ -18,7 +18,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getPostBySlug(slug)
   if (!post) return {}
 
-  const postUrl = `https://felixmolina.es/blog/${slug}`
+  const postUrl = `https://www.felixmolina.es/blog/${slug}`
+  const ogImageUrl = `https://www.felixmolina.es/api/og?title=${encodeURIComponent(post.metaTitle)}&description=${encodeURIComponent(post.metaDescription)}&type=blog`
 
   return {
     title: post.metaTitle,
@@ -33,13 +34,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: postUrl,
       locale: "es_ES",
       siteName: "Félix Molina",
+      images: [{ url: ogImageUrl, width: 1200, height: 630, alt: post.metaTitle }],
     },
     twitter: {
-      card: "summary",
+      card: "summary_large_image",
       site: "@xfmr96",
       creator: "@xfmr96",
-      title: post.metaTitle,
-      description: post.metaDescription,
+      images: [ogImageUrl],
     },
   }
 }
@@ -128,7 +129,8 @@ export default async function BlogPostPage({ params }: Props) {
   const post = getPostBySlug(slug)
   if (!post) notFound()
 
-  const postUrl = `https://felixmolina.es/blog/${slug}`
+  const postUrl = `https://www.felixmolina.es/blog/${slug}`
+  const schemaOgImage = `https://www.felixmolina.es/api/og?title=${encodeURIComponent(post.metaTitle)}&description=${encodeURIComponent(post.metaDescription)}&type=blog`
 
   const schemaArticle = {
     "@context": "https://schema.org",
@@ -138,6 +140,12 @@ export default async function BlogPostPage({ params }: Props) {
     mainEntityOfPage: { "@type": "WebPage", "@id": postUrl },
     headline: post.h1,
     description: post.metaDescription,
+    image: {
+      "@type": "ImageObject",
+      url: schemaOgImage,
+      width: 1200,
+      height: 630,
+    },
     author: {
       "@type": "Person",
       "@id": "https://felixmolina.es/#felix-molina",
@@ -153,6 +161,16 @@ export default async function BlogPostPage({ params }: Props) {
     inLanguage: "es-ES",
   }
 
+  const schemaBreadcrumb = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Inicio", item: "https://www.felixmolina.es" },
+      { "@type": "ListItem", position: 2, name: "Blog", item: "https://www.felixmolina.es/blog" },
+      { "@type": "ListItem", position: 3, name: post.metaTitle, item: postUrl },
+    ],
+  }
+
   const rendered = renderMarkdown(post.content)
 
   return (
@@ -160,6 +178,10 @@ export default async function BlogPostPage({ params }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaArticle) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaBreadcrumb) }}
       />
 
       <div className="max-w-3xl mx-auto px-4 py-8">

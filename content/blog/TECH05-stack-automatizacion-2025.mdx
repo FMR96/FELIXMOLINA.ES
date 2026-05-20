@@ -1,0 +1,70 @@
+---
+title: "El Stack de Automatización que Uso en 2025: N8n, Claude y Supabase"
+h1: "El Stack de Automatización que Uso en 2025"
+slug: "stack-automatizacion-ia-2025"
+metaTitle: "Stack Automatización IA 2025: N8n, Claude, Supabase | Félix Molina"
+metaDescription: "Las herramientas que forman la columna vertebral de mis negocios: captación, automatización y reporting. N8n, Claude, Supabase y Meta Ads. Todo medible."
+keyword: "stack automatización ia 2025"
+keywordsSecondary: ["n8n automatización", "claude api workflow", "supabase saas", "stack ia negocio", "automatización marketing ia"]
+searchIntent: "informacional"
+funnel: "TOFU"
+cluster: "Automatización + IA"
+publishOrder: 29
+date: "2025-04-01"
+readTime: "7 min"
+schema: ["Article"]
+---
+
+## El stack que funciona para mi modelo
+
+Este es el stack que Félix Molina usa hoy para hacer funcionar Foodly y DRSTK. No es el stack perfecto; es el que funciona para este modelo de negocio y esta forma de trabajar.
+
+El criterio de selección de cada herramienta fue el mismo: integración real con el resto del stack, curva de aprendizaje razonable para un fundador no técnico, y coste proporcional al valor generado. No hay herramientas all-in-one que intenten hacer todo — hay cinco herramientas que se integran bien y hacen cada una lo suyo.
+
+## Captación: Meta Ads + Next.js + Supabase
+
+Meta Ads genera tráfico predecible y medible hacia landing pages construidas en Next.js. Los formularios de captación conectan directamente con Supabase — los leads entran automáticamente en la base de datos y disparan una secuencia de seguimiento en N8n, sin intervención manual.
+
+La clave de este flujo: cero tiempo entre la captación del lead y el inicio del seguimiento. Mientras otros negocios procesan leads manualmente al día siguiente, este sistema activa la secuencia en segundos.
+
+## Automatización de marketing: N8n como cerebro
+
+N8n es el hub central. Conecta Meta Ads, email, WhatsApp, CRM y bases de datos. Cuando entra un lead, N8n decide qué secuencia activar según la fuente, el sector y el comportamiento del usuario.
+
+Los flujos típicos que Félix Molina tiene en N8n:
+- **Seguimiento de leads**: secuencia automática de contacto personalizado según el origen y perfil
+- **Reporting de clientes**: compilación semanal de datos de campañas y envío automático
+- **Alertas operativas**: notificaciones cuando alguna métrica sale del rango normal
+- **Onboarding de nuevos clientes**: secuencia de incorporación sin intervención manual
+
+## Producto: Next.js + Supabase + Claude Code
+
+Next.js para el frontend, Supabase para base de datos y autenticación, Vercel para deploy. Claude Code para construir features rápido sin equipo técnico.
+
+Este trio elimina la mayor parte de la fricción técnica en la construcción de producto. Supabase proporciona autenticación y base de datos con configuración mínima. Vercel hace el deploy automático en cada push. Claude Code construye los componentes y la lógica de negocio.
+
+## IA: Claude en los flujos de N8n
+
+Claude aparece en los flujos de N8n para procesar texto, generar contenido personalizado y analizar datos. No como sustituto del pensamiento estratégico, sino como ejecutor de tareas repetitivas que requieren lenguaje natural.
+
+Ejemplos prácticos: resumir el rendimiento de campañas en lenguaje natural para el reporte de cliente, generar variantes de copy para tests A/B, clasificar leads por sector y urgencia basándose en el texto de su solicitud.
+
+## Reporting: N8n + Claude + dashboard o email
+
+N8n recoge datos de todas las fuentes. Claude los interpreta y genera el resumen. El resultado llega a un dashboard o directamente al cliente por email. Cero intervención manual una vez configurado el flujo.
+
+Esto ha cambiado la dinámica de reporting en DRSTK: lo que antes consumía 4 horas semanales de trabajo manual ahora tarda 10 minutos de revisión. El tiempo liberado se reinvierte en trabajo estratégico.
+
+## Lo que no uso y por qué
+
+Herramientas que hacen todo y no hacen nada bien. Las plataformas all-in-one tienen la ventaja de la integración nativa, pero el coste es la profundidad: hacen cada cosa de forma mediocre.
+
+Prefiero cinco herramientas que se integran perfectamente a una plataforma que me ata con vendor lock-in y limita las posibilidades de customización. La curva de aprendizaje inicial es mayor, pero el control y la flexibilidad a largo plazo compensan con creces.
+
+## Preguntas frecuentes sobre automatización con IA
+
+**¿Cuánto cuesta este stack?** N8n self-hosted es gratuito. Supabase tiene un plan gratuito generoso. Claude API tiene coste por uso. Meta Ads depende del presupuesto de campaña. El coste fijo de infraestructura es bajo; el variable escala con el negocio.
+
+**¿Es necesario saber programar para implementarlo?** No para operarlo. Sí para la configuración inicial, donde Claude Code ayuda considerablemente. Félix Molina lo implementó sin background técnico formal.
+
+**¿En qué se diferencia N8n de Zapier?** N8n permite lógica más compleja, se puede auto-hospedar (más control y privacidad de datos) y tiene un modelo de precios más favorable para volumen alto de operaciones.

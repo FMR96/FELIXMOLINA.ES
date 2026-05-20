@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Mail, MessageCircle } from "lucide-react"
@@ -16,9 +17,13 @@ export default function SobreMiPage() {
           </CardHeader>
           <CardContent>
             <div className="flex items-center gap-4 mb-6">
-              <img
-                src="/FELIX_MOLINA.JPG"
+              <Image
+                src="/felix-molina.jpg"
                 alt="Félix Molina"
+                width={64}
+                height={64}
+                priority={true}
+                quality={85}
                 className="w-16 h-16 rounded-full object-cover object-top flex-shrink-0 border-2 border-orange-500"
               />
               <div>
