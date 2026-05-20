@@ -1,15 +1,17 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import dynamic from "next/dynamic"
 import Link from "next/link"
 import { ChevronRight, Menu, Monitor, Rocket, Layers, Lightbulb, Code2, Mail, MessageCircle, Rss } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import CommandCenterPage from "./command-center/page"
-import AgentNetworkPage from "./agent-network/page"
-import OperationsPage from "./operations/page"
-import IntelligencePage from "./intelligence/page"
-import SystemsPage from "./systems/page"
-import BlogPage from "./blog/page"
+
+const AgentNetworkPage = dynamic(() => import("./agent-network/page"), { ssr: false })
+const OperationsPage   = dynamic(() => import("./operations/page"),   { ssr: false })
+const IntelligencePage = dynamic(() => import("./intelligence/page"), { ssr: false })
+const SystemsPage      = dynamic(() => import("./systems/page"),      { ssr: false })
+const BlogPage         = dynamic(() => import("./blog/page"),         { ssr: false })
 
 const sectionLabels: Record<string, string> = {
   overview: "SOBRE MÍ",
