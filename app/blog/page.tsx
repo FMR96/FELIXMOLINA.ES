@@ -375,6 +375,17 @@ const SEO_ARTICLES: SeoMeta[] = [
     keyword: "readaptador deportivo Sevilla",
     funnel: "TOFU",
   },
+  {
+    slug: "caso-exito-seo-yuli-colors",
+    title: "SEO para centros de estética: cómo Yuli Colors llenó su agenda desde Google",
+    cluster: "SEO Local Sevilla",
+    date: "2026-05-20",
+    readTime: "6 min",
+    metaDescription:
+      "Félix Molina cuenta cómo trabajó el SEO de Yuli Colors, centro de estética en Camas. Agenda llena gracias a Google My Business y contenido optimizado.",
+    keyword: "centro de estética Camas Sevilla",
+    funnel: "TOFU",
+  },
 ]
 
 // ─── Category system ─────────────────────────────────────────────────────────
