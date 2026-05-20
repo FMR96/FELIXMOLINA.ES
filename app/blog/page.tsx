@@ -386,6 +386,17 @@ const SEO_ARTICLES: SeoMeta[] = [
     keyword: "centro de estética Camas Sevilla",
     funnel: "TOFU",
   },
+  {
+    slug: "caso-exito-seo-taperia-ambi",
+    title: "Cómo un bar de tapas en Mairena del Aljarafe pasó a salir el primero en Google Maps",
+    cluster: "SEO para Restaurantes",
+    date: "2026-05-20",
+    readTime: "7 min",
+    metaDescription:
+      "Félix Molina cuenta el caso SEO de Taperia Ambi en Mairena del Aljarafe: Google Maps, reseñas y contenido local. Resultados reales para un bar de tapas.",
+    keyword: "bar de tapas Mairena del Aljarafe",
+    funnel: "TOFU",
+  },
 ]
 
 // ─── Category system ─────────────────────────────────────────────────────────
