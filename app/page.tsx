@@ -86,7 +86,7 @@ export default function FelixMolinaWeb() {
           {!sidebarCollapsed && (
             <div className="mt-8 p-4 bg-neutral-800 border border-neutral-700 rounded">
               <div className="flex items-center gap-2 mb-2">
-                <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></div>
                 <span className="text-xs text-white">AGENDA ABIERTA</span>
               </div>
               <div className="text-xs text-neutral-500">
