@@ -125,7 +125,7 @@ export default function FelixMolinaWeb() {
           </div>
           <div className="flex items-center gap-4">
             <div className="text-xs text-neutral-500 hidden sm:block">Building systems that scale businesses.</div>
-            <a href="mailto:consultor@felixmolina.es">
+            <a href="mailto:fmr@drastika.es">
               <Button variant="ghost" size="icon" className="text-neutral-400 hover:text-orange-500">
                 <Mail className="w-4 h-4" />
               </Button>

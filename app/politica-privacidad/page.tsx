@@ -39,8 +39,8 @@ export default function PoliticaPrivacidadPage() {
             <p><span className="text-neutral-500">Domicilio:</span> [COMPLETAR], España</p>
             <p>
               <span className="text-neutral-500">Correo electrónico:</span>{" "}
-              <a href="mailto:consultor@felixmolina.es" className="text-orange-500 hover:underline">
-                consultor@felixmolina.es
+              <a href="mailto:fmr@drastika.es" className="text-orange-500 hover:underline">
+                fmr@drastika.es
               </a>
             </p>
             <p><span className="text-neutral-500">Sitio web:</span> felixmolina.es</p>
@@ -158,8 +158,8 @@ export default function PoliticaPrivacidadPage() {
             </ul>
             <p>
               Para ejercer cualquiera de estos derechos, diríjase a{" "}
-              <a href="mailto:consultor@felixmolina.es" className="text-orange-500 hover:underline">
-                consultor@felixmolina.es
+              <a href="mailto:fmr@drastika.es" className="text-orange-500 hover:underline">
+                fmr@drastika.es
               </a>{" "}
               indicando el derecho que desea ejercer e incluyendo copia de su documento de identidad.
             </p>

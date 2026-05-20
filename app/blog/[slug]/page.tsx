@@ -209,7 +209,7 @@ export default async function BlogPostPage({ params }: Props) {
               <p className="text-xs text-neutral-400">Consultor SEO & GEO · Sevilla</p>
             </div>
             <Link
-              href="mailto:consultor@felixmolina.es"
+              href="mailto:fmr@drastika.es"
               className="text-xs font-mono bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded transition-colors"
             >
               SOLICITAR AUDITORÍA GRATUITA →

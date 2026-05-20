@@ -56,7 +56,7 @@ export default function SobreMiPage() {
             </div>
 
             <div className="flex gap-2">
-              <a href="mailto:consultor@felixmolina.es" className="flex-1">
+              <a href="mailto:fmr@drastika.es" className="flex-1">
                 <Button size="sm" className="bg-orange-500 hover:bg-orange-600 text-white w-full">
                   <Mail className="w-3 h-3 mr-1" />
                   Contacto
