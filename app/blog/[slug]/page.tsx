@@ -153,7 +153,10 @@ export default async function BlogPostPage({ params }: Props) {
       url: "https://felixmolina.es",
     },
     publisher: {
+      "@type": "Person",
       "@id": "https://felixmolina.es/#felix-molina",
+      name: "Félix Molina",
+      url: "https://felixmolina.es",
     },
     datePublished: post.date,
     dateModified: post.date,

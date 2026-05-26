@@ -41,6 +41,11 @@ const schemaOrg = {
       "@id": "https://felixmolina.es/#felix-molina",
       name: "Félix Molina",
       jobTitle: "Consultor Tecnológico",
+      hasOccupation: {
+        "@type": "Occupation",
+        name: "Consultor SEO y GEO",
+        occupationLocation: { "@type": "City", name: "Sevilla" },
+      },
       description: "Félix Molina es consultor tecnológico y emprendedor en Sevilla. Especializado en SEO técnico, automatización con inteligencia artificial y marketing digital para pymes, restaurantes y negocios en crecimiento.",
       url: "https://felixmolina.es",
       image: "https://www.felixmolina.es/felix-molina.jpg",
@@ -148,6 +153,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }}
         />
+        <link rel="llms-txt" href="/llms.txt" />
       </head>
       <body className={`${geistMono.className} bg-black text-white antialiased`}>
         {children}
