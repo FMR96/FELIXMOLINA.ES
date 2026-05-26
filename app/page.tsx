@@ -43,7 +43,7 @@ export default function FelixMolinaWeb() {
         <div className="p-4">
           <div className="flex items-center justify-between mb-8">
             <div className={`${sidebarCollapsed ? "hidden" : "block"}`}>
-              <h1 className="text-orange-500 font-bold text-lg tracking-wider">FÉLIX MOLINA</h1>
+              <p className="text-orange-500 font-bold text-lg tracking-wider">FÉLIX MOLINA</p>
               <p className="text-neutral-500 text-xs">CONSULTOR TECNOLÓGICO</p>
             </div>
             <Button

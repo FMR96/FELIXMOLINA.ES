@@ -27,8 +27,8 @@ export default function SobreMiPage() {
                 className="w-16 h-16 rounded-full object-cover object-top flex-shrink-0 border-2 border-orange-500"
               />
               <div>
-                <div className="text-xl font-bold text-white">Félix Molina</div>
-                <div className="text-xs text-orange-500 font-mono tracking-wider">CONSULTOR TECNOLÓGICO</div>
+                <h1 className="text-xl font-bold text-white">Félix Molina — Consultor SEO y GEO en Sevilla</h1>
+                <p className="text-xs text-orange-500 font-mono tracking-wider">CONSULTOR TECNOLÓGICO · SEVILLA</p>
               </div>
             </div>
 
