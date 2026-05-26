@@ -1,6 +1,7 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Geist_Mono as GeistMono } from "next/font/google"
+import Script from "next/script"
 import "./globals.css"
 import { CookieBanner } from "@/components/cookie-banner"
 import { AnalyticsProvider } from "@/components/analytics-provider"
@@ -152,6 +153,18 @@ export default function RootLayout({
         {children}
         <CookieBanner />
         <AnalyticsProvider />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-Y87BFC1T5X"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-Y87BFC1T5X');
+          `}
+        </Script>
       </body>
     </html>
   )
