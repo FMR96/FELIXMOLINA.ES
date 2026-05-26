@@ -33,8 +33,6 @@ export default function AvisoLegalPage() {
           </h2>
           <div className="text-neutral-300 text-sm leading-relaxed space-y-1">
             <p><span className="text-neutral-500">Nombre:</span> Félix Molina</p>
-            <p><span className="text-neutral-500">NIF/NIE:</span> [COMPLETAR]</p>
-            <p><span className="text-neutral-500">Domicilio:</span> [COMPLETAR], España</p>
             <p>
               <span className="text-neutral-500">Correo electrónico:</span>{" "}
               <a href="mailto:fmr@drastika.es" className="text-orange-500 hover:underline">
