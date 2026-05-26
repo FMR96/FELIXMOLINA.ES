@@ -19,6 +19,9 @@ export type PostFrontmatter = {
   readTime: string
   schema: string[]
   isPillar?: boolean
+  updatedAt?: string
+  about?: string
+  mentions?: string[]
 }
 
 export type Post = PostFrontmatter & {

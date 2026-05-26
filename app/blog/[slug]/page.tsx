@@ -159,9 +159,15 @@ export default async function BlogPostPage({ params }: Props) {
       url: "https://felixmolina.es",
     },
     datePublished: post.date,
-    dateModified: post.date,
+    dateModified: post.updatedAt ?? post.date,
     keywords: [post.keyword, ...post.keywordsSecondary].join(", "),
     inLanguage: "es-ES",
+    ...(post.about ? { about: { "@type": "Thing", name: post.about } } : {}),
+    ...(post.mentions ? { mentions: post.mentions.map((m: string) => ({ "@type": "Thing", name: m })) } : {}),
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: ["h1", "article > p:first-of-type"],
+    },
   }
 
   const schemaBreadcrumb = {
